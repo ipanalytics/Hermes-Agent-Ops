@@ -15,7 +15,7 @@ This repository is a single home for everything we learned running a multi-agent
 
 ## Why one repository?
 
-All six ideas below are one story: *"how to keep LLM agents alive, sane, and affordable when nobody is watching."* They cross-reference each other (the playbook explains the incidents the tools prevent), so they ship together:
+All folders below are one story: *"how to keep LLM agents alive, sane, and affordable when nobody is watching."* They cross-reference each other (the playbook explains the incidents the tools prevent), so they ship together:
 
 - One README tells the whole narrative — much stronger than six orphan repos with one star each.
 - Tooling, patterns and docs live side by side; each folder stays independently readable and publishable.

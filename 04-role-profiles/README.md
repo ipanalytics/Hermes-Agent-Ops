@@ -7,7 +7,6 @@
 - `template/SOUL.md.example` — annotated master-prompt skeleton: the section list that makes a role self-contained (working style, preferences, measurement rules, inventory, equipment, verified recipes with status markers, **hard boundaries**, historical mistake-protection, voice-pitfall notes).
 - `template/config.yaml.example` — per-role model pinning: cheap for workers, careful for the doctor, a *third* model for the operator (reviewer ≠ worker), aux calls on the cheapest capable provider, session hygiene + compaction settings.
 - `docs/routing.md` — the "who does what" decision table + handover protocol + deliberate exclusions.
-- `README.md` — you are here.
 
 ## The rules that make it work
 

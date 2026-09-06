@@ -7,7 +7,6 @@
 - `skills/one-shot-reminder/SKILL.md` — a complete skill: the zero-LLM-cost fixed-text reminder pattern (script + one-shot no-agent job + auto-disable), with timezone and anchoring pitfalls.
 - `cron-recipes/monitor-gated-digest.md` — wake the LLM only when something changed (cheap change-detector gate + continuity dedupe): price watches, release watchlists.
 - `cron-recipes/watchdog-chain.md` — keep rootless long-lived services alive via scheduler watchdogs; anchoring and detachment rules from production.
-- `README.md` — you are here.
 
 ## Design notes for publishable skills/plugins (from production)
 

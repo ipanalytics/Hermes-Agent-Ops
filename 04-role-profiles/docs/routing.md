@@ -24,6 +24,6 @@ it and asks.
 ## Exclusions (deliberate)
 
 - Some domains are explicitly NOT supervised by the operator (e.g. the chef's
-  kitchen) — owner decision, documented, not an oversight.
+  kitchen) — a documented choice, not an oversight.
 - Private topics: only coordinator + human. Other roles are excluded at the
   gateway level (ignore list) AND in their SOUL.md.

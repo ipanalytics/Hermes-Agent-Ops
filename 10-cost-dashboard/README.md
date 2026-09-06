@@ -9,7 +9,6 @@
 ## What you get here
 
 - `cost_dashboard.py` — reads the same sqlite usage table as the guard and renders a self-contained HTML page: no server, no JS frameworks, one file you can open anywhere or serve statically.
-- `README.md` — you are here.
 
 ## What it shows
 

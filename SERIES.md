@@ -1,8 +1,7 @@
 # Series map — how the folders continue each other
 
-The numbered folders are one evolving story, not islands. New ideas extend old
-ones; this map keeps the threads visible. **When in doubt: read the incident
-autopsies (`03/incidents`) — everything else is a fix for something in there.**
+The numbered folders are one evolving story, not islands: new ideas extend old
+ones. The incident autopsies in `03` explain why most other folders exist.
 
 ## The threads
 

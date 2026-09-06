@@ -8,7 +8,6 @@
 
 - `cron_exporter.py` — renders a markdown watch-table from a JSON job list: when each job runs (humanized cron), with or without an LLM agent, where it delivers, notes, and who watches it. Deterministic, free, CI-able.
 - `jobs.example.json` — the input schema, with five realistic jobs (digest, guard, monitor-gated price watch, weekend media digest, one-shot reminder).
-- `README.md` — you are here.
 
 ## The loop it closes
 

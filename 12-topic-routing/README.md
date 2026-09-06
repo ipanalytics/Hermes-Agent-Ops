@@ -30,7 +30,7 @@
 5. **Thread hygiene**: digests dedupe via continuity, so a topic that was quiet all week
    stays quiet — silence is a feature (see `05/delivery-policy.md`).
 
-## Config snippets (sanitized pattern)
+## Config snippets (example)
 
 ```yaml
 # per role: which topics exist in its world

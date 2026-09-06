@@ -10,7 +10,6 @@
 ## What you get here
 
 - `fresh_prompt_linter.py` — a runnable, deterministic heuristic checker (no LLM involved, costs nothing, safe for CI/gates).
-- `README.md` — you are here.
 
 ## It catches
 

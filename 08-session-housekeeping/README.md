@@ -40,8 +40,9 @@ failing compression is how a calm week becomes a 7x bill (full story in
 ## Deliverable notes
 
 - Everything here is configuration + prompts, no heavy code — that is the point.
-- Annotated example prompts and config snippets ship with this folder as they stabilize;
-  the rules above are the working contract.
+- The working contract is the three-tier table and the rules above; the
+  example prompts and config snippets live next to this README as they are
+  generalized from running setups.
 
 ## Why this gets stars
 

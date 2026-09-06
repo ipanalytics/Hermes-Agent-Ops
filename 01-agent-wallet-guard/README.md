@@ -6,7 +6,6 @@
 
 - `agent_wallet_guard.py` — the production watchdog (this exact logic ran every 30 min for weeks). Empty stdout when healthy; throttled alerts on: low balance (1/12h) and daily burn over threshold (1/4h), each with the top session by cache-read tokens as culprit candidate.
 - `guard_config.example.env` — every knob, commented.
-- `README.md` — you are here.
 
 ## The problem
 

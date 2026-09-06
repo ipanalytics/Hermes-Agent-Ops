@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="240" viewBox="0 0 1200 240">
+  <rect width="1200" height="240" fill="#0d1117"/>
+  <rect x="0" y="0" width="1200" height="4" fill="#58a6ff"/>
+  <text x="60" y="118" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="56" font-weight="700" fill="#e6edf3" letter-spacing="2">HERMES AGENT OPS</text>
+  <text x="60" y="158" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="22" fill="#8b949e" letter-spacing="1">Production patterns &amp; tooling for running LLM agents as a service</text>
+  <rect x="60" y="180" width="380" height="2" fill="#30363d"/>
+  <text x="60" y="212" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="15" fill="#58a6ff">wallet-guard · gateway-supervisor · playbook · role-profiles · cron-of-crons</text>
+</svg>

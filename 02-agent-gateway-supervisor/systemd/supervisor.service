@@ -1,0 +1,16 @@
+[Unit]
+Description=myNET gateway supervisor (restarts mynet-agent-gateway/dashboard via systemctl + polkit)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+Environment=HOME=/home/hermes
+ExecStart=/home/hermes/.hermes/hermes-agent/venv/bin/python /home/hermes/.hermes/scripts/hermes_gateway_watchdog.py --supervise
+Restart=on-failure
+RestartSec=15s
+StandardOutput=append:/home/hermes/.hermes/logs/gateway_watchdog_supervisor.log
+StandardError=append:/home/hermes/.hermes/logs/gateway_watchdog_supervisor.log
+
+[Install]
+WantedBy=default.target

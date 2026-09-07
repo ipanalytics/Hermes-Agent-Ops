@@ -1,0 +1,12 @@
+// 49-mynet-hermes.rules — allow the service user to restart its own systemd units.
+// Without this, `systemctl restart` from an unprivileged agent user fails with
+// "Access denied" (sudo is unusable under NoNewPrivileges=true).
+// Install: /etc/polkit-1/rules.d/49-mynet-hermes.rules  (chown root:root, chmod 600)
+polkit.addRule(function(action, subject) {
+    if (action.id.indexOf("org.freedesktop.systemd1.") === 0 &&
+        subject.user === "hermes" &&
+        (action.lookup("unit") === "mynet-agent-gateway.service" ||
+         action.lookup("unit") === "mynet-agent-dashboard.service")) {
+        return polkit.Result.YES;
+    }
+});

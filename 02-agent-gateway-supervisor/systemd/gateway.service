@@ -1,0 +1,42 @@
+[Unit]
+Description=myNET Hermes messaging gateway
+After=network-online.target
+Wants=network-online.target
+StartLimitIntervalSec=300
+StartLimitBurst=5
+
+[Service]
+Type=simple
+User=hermes
+Group=hermes
+WorkingDirectory=/var/lib/mynet-agent/workspaces
+Environment=HOME=/home/hermes
+Environment=HERMES_HOME=/home/hermes/.hermes
+Environment=PATH=/home/hermes/.local/bin:/home/hermes/.hermes/bin:/home/hermes/.hermes/node/bin:/usr/local/bin:/usr/bin:/bin
+EnvironmentFile=-/home/hermes/.hermes/.env
+Environment=OMP_NUM_THREADS=2
+Environment=CT2_NUM_THREADS=2
+ExecStart=/home/hermes/.local/bin/hermes gateway run
+Restart=on-failure
+RestartSec=10s
+TimeoutStartSec=90s
+TimeoutStopSec=90s
+KillMode=mixed
+KillSignal=SIGTERM
+UMask=0077
+Slice=mynet-agent.slice
+CPUQuota=300%
+MemoryMax=6G
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=read-only
+ReadWritePaths=/home/hermes/.hermes /home/hermes/.local/state /home/hermes/.local/share /home/hermes/.cache /home/hermes/.config /var/lib/mynet-agent /var/cache/mynet-agent
+ProtectKernelTunables=true
+ProtectKernelModules=true
+ProtectControlGroups=true
+RestrictSUIDSGID=true
+LockPersonality=true
+
+[Install]
+WantedBy=multi-user.target

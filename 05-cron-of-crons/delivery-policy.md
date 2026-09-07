@@ -22,3 +22,28 @@ Decision rules for where a scheduled job's output goes.
   digests: compare, send only the delta.
 - Empty stdout from a no-agent script = nothing is delivered = zero cost.
   This is the canonical "watchdog" pattern.
+
+## Alert noise budget
+
+An outage that lasts two hours must produce **~2 messages**, not ~200.
+Rule: one alert on the state *transition* into the problem, one on recovery,
+plus at most one reminder every 30 minutes while it persists.
+
+- **Transition-only alerts.** A watcher that posts on every poll turns any
+  lasting problem into a flood (observed: 30+ messages in 90 minutes from a
+  single sick service). Gate each alert on a state file: first sighting posts,
+  repeats are suppressed until the state clears or the reminder timer fires.
+- **Silent recovery is the norm.** A unit that restarts itself and comes back
+  in under a minute needs no alert at all — that is `Restart=on-failure` doing
+  its job. Alert on *failed* restart escalation, not on every restart.
+- **Reminder, not replay.** If the problem persists past ~30 min, one short
+  reminder is useful ("still down"); re-sending the same alert every cycle is
+  not.
+- **Budgets scale with severity.** A wallet guard fires at most a few times a
+  day by design; a supervisor caps itself (e.g. 3 restarts/hour, then escalate
+  to a human). If a job cannot bound its own message count, it is not a
+  watchdog, it is a pager.
+- **The human's topic is a fire channel.** If the alert topic accumulates more
+  than a handful of messages a day on a healthy day, the policy is wrong —
+  move routine content to digests and keep the channel for transitions.
+

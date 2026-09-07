@@ -20,6 +20,7 @@ ones. The incident autopsies in `03` explain why most other folders exist.
 | 11 | domain-persona-packs | the reason to use 04 |
 | 12 | topic-routing | the walls that make 04's multi-role safe |
 | 13 | voice-input-hypotheses | the agent-side fix for a whole class of 03 mistakes |
+| 14 | agent-data-intake | 02's unit pattern applied to peripheral receivers; 03's intake incident explained; the spool contract every device-side sender should ship |
 
 ## How a newcomer should read it
 

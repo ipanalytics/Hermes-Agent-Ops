@@ -1,0 +1,16 @@
+[Unit]
+Description=Intake TLS proxy (public :8899 -> local :8443)
+After=network-online.target intake-webhook.service
+Wants=network-online.target
+
+[Service]
+Type=simple
+Environment=HOME=/home/USER
+ExecStart=/usr/bin/python3 /opt/intake/tls_proxy.py
+Restart=on-failure
+RestartSec=5s
+StandardOutput=append:/home/USER/.local/state/intake/tls_proxy.log
+StandardError=append:/home/USER/.local/state/intake/tls_proxy.log
+
+[Install]
+WantedBy=default.target

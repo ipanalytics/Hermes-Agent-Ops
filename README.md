@@ -28,7 +28,7 @@ Agent deployments fail in a small set of recurring ways: one session grows until
 - every scheduled prompt is checked for self-containment before it ships,
 - the ops documentation is generated from the job list rather than maintained by hand.
 
-The repository is a monorepo: thirteen modules under numbered directories, each independently readable, all cross-referencing through `SERIES.md`.
+The repository is a monorepo: fourteen modules under numbered directories, each independently readable, all cross-referencing through `SERIES.md`.
 
 ---
 
@@ -66,7 +66,7 @@ Three properties hold at every layer:
 | Module | Responsibility |
 |---|---|
 | `01-agent-wallet-guard` | Measures the provider balance directly; alerts on floor breaches and daily burn, naming the top session by cache-read tokens. Silent when healthy. |
-| `02-agent-gateway-supervisor` | External daemon: heartbeat staleness + fresh fatal log markers; restart with cooldown and hourly cap; maintenance pause handling; escalation instead of auto-restore. Guard cron re-spawns the daemon. |
+| `02-agent-gateway-supervisor` | External daemon as a **systemd user unit** (not a cron guard): heartbeat staleness + fresh fatal log markers; restarts only via `systemctl` (polkit grant); cooldown + hourly cap; maintenance pause; escalation instead of auto-restore. |
 | `03-agent-ops-playbook` | Sanitized incident autopsies and decision trees for the recurring failure classes. |
 | `04-role-profiles` | SOUL.md master-prompt template, per-role model/config pinning, file-based role bridges. |
 | `05-cron-of-crons` | Operator sweep brief, who-watches-whom matrix, delivery policy for digests, alerts, and one-shots. |
@@ -78,6 +78,7 @@ Three properties hold at every layer:
 | `11-domain-persona-packs` | Role cartridges for `04`: chef with inventory, doctor with a limits file, operator. |
 | `12-topic-routing` | Topic-as-domain isolation, ignore-list walls, alert routing to the DM. |
 | `13-voice-input-hypotheses` | Transcription-garble defense: names from voice are hypotheses until verified against ground truth. |
+| `14-agent-data-intake` | Reliable device-to-agent intake: multi-threaded receiver as a systemd user unit (never a gateway cron), device-side spool that retries until delivered, 24/7 scanning with no time windows. |
 
 ## Quick start
 

@@ -1,0 +1,17 @@
+[Unit]
+Description=Intake webhook receiver (HTTP)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+Environment=HOME=/home/USER
+Environment=INTAKE_PORT=8443
+ExecStart=/usr/bin/python3 /opt/intake/webhook_receiver.py
+Restart=on-failure
+RestartSec=5s
+StandardOutput=append:/home/USER/.local/state/intake/webhook.log
+StandardError=append:/home/USER/.local/state/intake/webhook.log
+
+[Install]
+WantedBy=default.target

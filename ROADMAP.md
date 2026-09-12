@@ -28,6 +28,13 @@ gate, two test suites (22 + 16 checks). 16 gepa-skill-tuner: tuner.py, shell-saf
 ships tests. Measured on a 124-row routing set: 70 unique rows, 30 conflict groups, train-val
 input overlap 1 -> 0.
 
+## v0.4.2 — docs and slot measurement
+Publication meta-commentary removed across the modules: eleven repeated pitch sections, defensive
+parentheticals, a roadmap written as narrative. 17 model-slot-bakeoff measures candidates for a
+slot on real tasks — latency, billed cost per task, the upstream that actually served, a
+hidden-test grade, and tool-call support. Fixes a stale module count and directory tree in the
+root README.
+
 ## Next
 - v0.5 — test suites and CI for 01, 02, 07, 09, 10, 14 (the unfinished half of v0.4).
 - v0.5 — live demo data: anonymized sample usage DB plus the dashboard rendered from it.

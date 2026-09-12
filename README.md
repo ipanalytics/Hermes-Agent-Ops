@@ -35,7 +35,7 @@ Each one is handled by a component with a defined detection rule and response pa
 - every scheduled prompt is checked for self-containment before it ships,
 - the ops documentation is generated from the job list rather than maintained by hand.
 
-Sixteen modules under numbered directories, each readable on its own, cross-referenced in `SERIES.md`.
+Seventeen modules under numbered directories, each readable on its own, cross-referenced in `SERIES.md`.
 
 ---
 
@@ -88,6 +88,7 @@ Three properties hold at every layer:
 | `14-agent-data-intake` | Reliable device-to-agent intake: multi-threaded receiver as a systemd user unit (never a gateway cron), device-side spool that retries until delivered, 24/7 scanning with no time windows. |
 | `15-agent-tool-guardrails` | Judge from outside, applied to commands and worktrees: an AST-based `pre_tool_call` gate (not a regex on the string), a skill scanner for injection/exfil before an install is trusted, and git-worktree lanes whose cards close with orchestrator-produced evidence. |
 | `16-gepa-skill-tuner` | Reflective prompt evolution (GEPA) pointed at the artifacts an agent actually ships — the prompt and the SKILL.md — with a declared metric budget, a deduplicated dataset, a held-out split, and a diff as the output. |
+| `17-model-slot-bakeoff` | Picks a model for a slot by measuring the slot's real tasks: billed cost per task, latency, the upstream that actually served, hidden-test grade, and tool-call support. |
 
 ## Quick start
 
@@ -233,6 +234,7 @@ hermes-agent-ops/
 ├── 14-agent-data-intake/
 ├── 15-agent-tool-guardrails/     hooks/, lanes.py, tests/, install.sh
 ├── 16-gepa-skill-tuner/          tuner.py, tests/, examples/
+├── 17-model-slot-bakeoff/        bakeoff.py, tests/, examples/
 ├── SERIES.md                     how the modules extend each other
 ├── ROADMAP.md
 └── site/                         banner assets

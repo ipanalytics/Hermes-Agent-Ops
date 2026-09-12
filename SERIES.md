@@ -23,6 +23,7 @@ autopsies in `03` are the reason most of the other folders exist.
 | 14 | agent-data-intake | 02's unit pattern applied to peripheral receivers; 03's intake incident explained; the spool contract every device-side sender should ship |
 | 15 | agent-tool-guardrails | **02**'s outside-judgement stance turned on commands and worktrees; guards what **07**-approved prompts actually do; the lane half pairs with Hermes' own worktree isolation |
 | 16 | gepa-skill-tuner | the repair loop after **07**: the linter blocks a bad prompt, the tuner rewrites one against labelled traffic; its task sets are exactly what **15**'s gates and **03**'s incidents produce |
+| 17 | model-slot-bakeoff | the measurement step behind **04**'s model pinning: a slot is worth what its tasks cost per call, and **16**'s optimization runs inherit that choice |
 
 ## Reading order
 

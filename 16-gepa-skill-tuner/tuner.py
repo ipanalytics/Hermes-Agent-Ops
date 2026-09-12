@@ -8,6 +8,9 @@ its system prompt, a cron prompt, or a SKILL.md.
 
 This wrapper keeps the harness honest:
   * the dataset is a file (JSONL of {"input", "answer"}), not a vibe,
+  * **repeated examples are collapsed before the split** — duplicates both inflate the
+    validation score (the same row leaks into train *and* val) and, on mixture-of-experts
+    optimizers, drive the reflector into memorising the repeat instead of the rule,
   * the metric is exact-match or your own evaluator module,
   * the run is capped by --max-metric-calls, so the cost is bounded before you start,
   * the output is a JSON report plus a unified diff against the seed prompt, so the result
@@ -47,6 +50,63 @@ def load_dataset(path: str) -> list[dict]:
     if len(rows) < 4:
         raise SystemExit("need at least 4 rows — GEPA cannot reflect on a single example")
     return rows
+
+
+def dedupe_dataset(rows: list[dict], max_conflict_samples: int = 5) -> tuple[list[dict], dict]:
+    """Collapse repeated `input` rows and report label conflicts.
+
+    Why this step exists (it is not cosmetic):
+
+    * **Leakage.** The train/val split is a slice of the file. If one request appears twice,
+      the same example is optimised on *and* scored — the validation number goes up while the
+      prompt gets no better.
+    * **Memorisation.** Reflective optimizers (GEPA included) read traces and rewrite
+      instructions in natural language; fed the same row five times, the reflector explains
+      *that row* instead of the rule behind it. Repeated data hurts MoE-based models hardest.
+    * **Cost.** Every duplicate is another paid rollout against a budget you declared up front.
+
+    Duplicates are matched on the input with whitespace collapsed and case folded. When the
+    copies disagree on `answer` (label noise — often a genuinely two-way case in the set),
+    the majority label wins and ties keep the first occurrence; every conflicting group is
+    reported so the set can be fixed at the source rather than silently averaged away.
+    """
+    groups: dict[str, list[dict]] = {}
+    order: list[str] = []
+    for row in rows:
+        key = " ".join(row["input"].split()).casefold()
+        if key not in groups:
+            groups[key] = []
+            order.append(key)
+        groups[key].append(row)
+
+    unique: list[dict] = []
+    conflicts: list[dict] = []
+    for key in order:
+        copies = groups[key]
+        if len(copies) == 1:
+            unique.append(copies[0])
+            continue
+        counts: dict[str, int] = {}
+        for copy in copies:
+            counts[copy["answer"]] = counts.get(copy["answer"], 0) + 1
+        winner = max(counts, key=lambda a: (counts[a], -list(counts).index(a)))
+        unique.append({"input": copies[0]["input"], "answer": winner})
+        if len(counts) > 1:
+            conflicts.append({
+                "input": copies[0]["input"][:160],
+                "labels": counts,
+                "kept": winner,
+                "copies": len(copies),
+            })
+
+    stats = {
+        "rows_in": len(rows),
+        "rows_kept": len(unique),
+        "duplicates_removed": len(rows) - len(unique),
+        "conflict_groups": len(conflicts),
+        "conflicts": conflicts[:max_conflict_samples],
+    }
+    return unique, stats
 
 
 def load_evaluator(path: str | None):
@@ -98,8 +158,12 @@ def main() -> int:
     parser.add_argument("--evaluator", help="python file with evaluate(data, response)")
     parser.add_argument("--task-lm", default=DEFAULT_TASK_LM)
     parser.add_argument("--reflection-lm", default=DEFAULT_REFLECTION_LM)
-    parser.add_argument("--max-metric-calls", type=int, default=100)
     parser.add_argument("--val-fraction", type=float, default=0.3)
+    parser.add_argument("--max-metric-calls", type=int, default=100)
+    parser.add_argument("--keep-duplicates", action="store_true",
+                        help="do NOT collapse repeated inputs (default: collapse them)")
+    parser.add_argument("--max-conflict-samples", type=int, default=5,
+                        help="how many label-conflict groups to keep in the report")
     parser.add_argument("--out", default="gepa-report.json")
     parser.add_argument("--write", action="store_true",
                         help="write the best prompt back into --prompt-file/--skill")
@@ -126,6 +190,24 @@ def main() -> int:
 
     metric = load_evaluator(args.evaluator)
     rows = load_dataset(args.dataset)
+    if args.keep_duplicates:
+        dataset_stats = {
+            "rows_in": len(rows), "rows_kept": len(rows), "duplicates_removed": 0,
+            "conflict_groups": 0, "conflicts": [], "dedupe_skipped": True,
+        }
+    else:
+        rows, dataset_stats = dedupe_dataset(rows, args.max_conflict_samples)
+        if dataset_stats["duplicates_removed"]:
+            print(f"dataset: {dataset_stats['rows_in']} rows -> {dataset_stats['rows_kept']} "
+                  f"after dropping {dataset_stats['duplicates_removed']} duplicate inputs "
+                  f"({dataset_stats['conflict_groups']} with conflicting labels)",
+                  file=sys.stderr)
+        for conflict in dataset_stats["conflicts"]:
+            print(f"  conflict: kept {conflict['kept']!r} out of {conflict['labels']} for "
+                  f"{conflict['input'][:80]!r}", file=sys.stderr)
+        if len(rows) < 4:
+            raise SystemExit("fewer than 4 unique rows after dedupe — nothing to reflect on")
+
     split = max(1, int(len(rows) * (1 - args.val_fraction)))
     trainset, valset = rows[:split], rows[split:] or rows[-1:]
 
@@ -163,6 +245,7 @@ def main() -> int:
         "elapsed_s": round(time.time() - started, 1),
         "task_lm": args.task_lm, "reflection_lm": args.reflection_lm,
         "trainset": len(trainset), "valset": len(valset),
+        "dataset": dataset_stats,
         "metric_calls": args.max_metric_calls,
         "candidates": len(result.candidates),
         "val_scores": list(getattr(result, "val_aggregate_scores", []) or []),

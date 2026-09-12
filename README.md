@@ -5,7 +5,7 @@
 <p align="center">
   <a href="#"><img src="https://img.shields.io/badge/License-MIT%20%2B%20CC--BY--4.0-blue.svg" alt="License"></a>
   <a href="#"><img src="https://img.shields.io/badge/Status-active-success.svg" alt="Status"></a>
-  <a href="#"><img src="https://img.shields.io/badge/Version-0.3.0-orange.svg" alt="Version"></a>
+  <a href="#"><img src="https://img.shields.io/badge/Version-0.4.1-orange.svg" alt="Version"></a>
   <a href="#"><img src="https://img.shields.io/badge/Python-3.10%2B-3776AB.svg" alt="Python"></a>
   <a href="#"><img src="https://img.shields.io/badge/Platform-Linux-lightgrey.svg" alt="Platform"></a>
   <a href="#"><img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg" alt="PRs"></a>
@@ -80,7 +80,7 @@ Three properties hold at every layer:
 | `13-voice-input-hypotheses` | Transcription-garble defense: names from voice are hypotheses until verified against ground truth. |
 | `14-agent-data-intake` | Reliable device-to-agent intake: multi-threaded receiver as a systemd user unit (never a gateway cron), device-side spool that retries until delivered, 24/7 scanning with no time windows. |
 | `15-agent-tool-guardrails` | Judge from outside, applied to commands and worktrees: an AST-based `pre_tool_call` gate (not a regex on the string), a skill scanner for injection/exfil before an install is trusted, and git-worktree lanes whose cards close with orchestrator-produced evidence. |
-| `16-gepa-skill-tuner` | Reflective prompt evolution (GEPA) pointed at the artifacts an agent actually ships — the prompt and the SKILL.md — with a declared metric budget, a held-out split, and a diff as the output. |
+| `16-gepa-skill-tuner` | Reflective prompt evolution (GEPA) pointed at the artifacts an agent actually ships — the prompt and the SKILL.md — with a declared metric budget, a deduplicated dataset, a held-out split, and a diff as the output. |
 
 ## Quick start
 
@@ -225,7 +225,7 @@ hermes-agent-ops/
 ├── 13-voice-input-hypotheses/
 ├── 14-agent-data-intake/
 ├── 15-agent-tool-guardrails/     hooks/, lanes.py, tests/, install.sh
-├── 16-gepa-skill-tuner/          tuner.py, examples/
+├── 16-gepa-skill-tuner/          tuner.py, tests/, examples/
 ├── SERIES.md                     how the modules extend each other
 ├── ROADMAP.md
 └── site/                         banner assets

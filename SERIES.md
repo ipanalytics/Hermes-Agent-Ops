@@ -21,6 +21,7 @@ ones. The incident autopsies in `03` explain why most other folders exist.
 | 12 | topic-routing | the walls that make 04's multi-role safe |
 | 13 | voice-input-hypotheses | the agent-side fix for a whole class of 03 mistakes |
 | 14 | agent-data-intake | 02's unit pattern applied to peripheral receivers; 03's intake incident explained; the spool contract every device-side sender should ship |
+| 15 | agent-tool-guardrails | **02**'s outside-judgement stance turned on commands and worktrees; guards what **07**-approved prompts actually do; the lane half pairs with Hermes' own worktree isolation |
 
 ## How a newcomer should read it
 

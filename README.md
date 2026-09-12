@@ -79,6 +79,8 @@ Three properties hold at every layer:
 | `12-topic-routing` | Topic-as-domain isolation, ignore-list walls, alert routing to the DM. |
 | `13-voice-input-hypotheses` | Transcription-garble defense: names from voice are hypotheses until verified against ground truth. |
 | `14-agent-data-intake` | Reliable device-to-agent intake: multi-threaded receiver as a systemd user unit (never a gateway cron), device-side spool that retries until delivered, 24/7 scanning with no time windows. |
+| `15-agent-tool-guardrails` | Judge from outside, applied to commands and worktrees: an AST-based `pre_tool_call` gate (not a regex on the string), a skill scanner for injection/exfil before an install is trusted, and git-worktree lanes whose cards close with orchestrator-produced evidence. |
+| `16-gepa-skill-tuner` | Reflective prompt evolution (GEPA) pointed at the artifacts an agent actually ships — the prompt and the SKILL.md — with a declared metric budget, a held-out split, and a diff as the output. |
 
 ## Quick start
 
@@ -94,7 +96,7 @@ export WALLET_API_KEY=sk-...
 python3 agent_wallet_guard.py            # silent when healthy
 ```
 
-The guard, supervisor, linter, exporter, and dashboard are Python 3.10+ standard library only — no dependency install. Templates and prompt briefs in the remaining modules are used as-is.
+`15` ships with tests (`tests/`) and needs one pure-python wheel (`bashlex`, vendored by its installer). The guard, supervisor, linter, exporter, and dashboard are Python 3.10+ standard library only — no dependency install. Templates and prompt briefs in the remaining modules are used as-is.
 
 ## Installation
 
@@ -221,6 +223,9 @@ hermes-agent-ops/
 ├── 11-domain-persona-packs/
 ├── 12-topic-routing/
 ├── 13-voice-input-hypotheses/
+├── 14-agent-data-intake/
+├── 15-agent-tool-guardrails/     hooks/, lanes.py, tests/, install.sh
+├── 16-gepa-skill-tuner/          tuner.py, examples/
 ├── SERIES.md                     how the modules extend each other
 ├── ROADMAP.md
 └── site/                         banner assets

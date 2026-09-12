@@ -1,0 +1,6 @@
+# Isolated install — never into the agent's own virtualenv:
+#   python3 -m venv --without-pip .venv
+#   curl -sSL https://bootstrap.pypa.io/get-pypi.py | .venv/bin/python   # (get-pip.py)
+#   .venv/bin/pip install -r requirements.txt
+gepa==0.0.26
+litellm>=1.80,!=1.82.7,!=1.82.8

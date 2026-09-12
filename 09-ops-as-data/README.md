@@ -1,5 +1,7 @@
 # 09 — ops-as-data
 
+_Русская версия: [README.ru.md](README.ru.md)_
+
 **Scheduled jobs as living documentation: stop writing the watch-table by hand, generate it from the job list.**
 
 > The docs always drift from reality — until the docs ARE generated from reality.

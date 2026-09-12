@@ -1,5 +1,7 @@
 # 02 — agent-gateway-supervisor
 
+_Русская версия: [README.ru.md](README.ru.md)_
+
 **Gateway supervision done properly: systemd owns the processes, one external supervisor detects "alive but dead" states, and a polkit grant lets the unprivileged agent restart its own units. No `gateway restart` from inside the agent, ever.**
 
 Revision 2026-09-07: rebuilt after an incident where the old design (self-written watchdog + `hermes gateway restart` racing systemd) corrupted the state DB and took the whole agent down for ~12 h. The lesson is encoded in the file layout below.

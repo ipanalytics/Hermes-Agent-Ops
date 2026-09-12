@@ -1,5 +1,7 @@
 # 04 — role-profiles
 
+_Русская версия: [README.ru.md](README.ru.md)_
+
 **Multi-role agent architecture on a single gateway: one bot, N professional personas, each with its own memory, topic, and boundaries.**
 
 ## What you get

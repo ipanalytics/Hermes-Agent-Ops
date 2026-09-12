@@ -1,5 +1,7 @@
 # 07 — fresh-prompt-linter
 
+_Русская версия: [README.ru.md](README.ru.md)_
+
 **The code-review bot for prompt hygiene: will your cron prompt survive a fresh session?**
 
 > A scheduled agent job runs in a NEW session with ZERO chat context. Prompts written against

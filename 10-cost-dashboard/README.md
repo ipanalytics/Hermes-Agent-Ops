@@ -1,5 +1,7 @@
 # 10 — cost-dashboard
 
+_Русская версия: [README.ru.md](README.ru.md)_
+
 **See where the money went: one-file HTML panel from the usage DB — spend by day, by provider, and the top sessions that ate your budget.**
 
 > `01-agent-wallet-guard` tells you WHEN money burns. This tells you WHERE.

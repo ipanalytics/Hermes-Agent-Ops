@@ -13,6 +13,8 @@
 
 # Hermes Agent Ops
 
+_Русская версия: [README.ru.md](README.ru.md)_
+
 Operational patterns, tooling, and incident records for running LLM agents as a 24/7 service. The repository covers spend guards, external process supervision, multi-role profile architecture, self-observing scheduled jobs, and the post-mortems behind each component. Everything here is generalized from a production deployment that has been operating around the clock — every artifact is either runnable code or a configuration template that was exercised in that environment.
 
 The primary target is [Hermes Agent](https://hermes-agent.nousresearch.com); the patterns and most of the tooling apply to any agent gateway with a scheduler, a state store, and provider APIs.

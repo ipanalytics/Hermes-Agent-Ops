@@ -1,5 +1,7 @@
 # 13 — voice-input-hypotheses
 
+_Русская версия: [README.ru.md](README.ru.md)_
+
 **The agent's defense against its own voice channel: treat every name you heard as a hypothesis, verify before you lecture.**
 
 > Voice transcription garbles domain terms — reliably, inventively, and with

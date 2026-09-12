@@ -1,5 +1,7 @@
 # Roadmap
 
+_Русская версия: [ROADMAP.ru.md](ROADMAP.ru.md)_
+
 Shipped releases, each one a working tree rather than a plan.
 
 ## v0.1 — skeleton

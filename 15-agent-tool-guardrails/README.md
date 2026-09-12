@@ -1,5 +1,7 @@
 # 15 — agent-tool-guardrails
 
+_Русская версия: [README.ru.md](README.ru.md)_
+
 **Stop trusting the agent's own report: gate the commands, vet the skills, and let the orchestrator accept the work.**
 
 > Two failure modes. First: a destructive command goes through because the approval layer

@@ -1,5 +1,7 @@
 # 01 — agent-wallet-guard
 
+_Русская версия: [README.ru.md](README.ru.md)_
+
 **Watchdog for LLM API spend: measure the *fact*, find the *culprit session*, alert only when something is wrong.**
 
 ## What you get

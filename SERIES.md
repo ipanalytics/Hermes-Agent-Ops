@@ -1,5 +1,7 @@
 # Series map — how the folders continue each other
 
+_Русская версия: [SERIES.ru.md](SERIES.ru.md)_
+
 New modules extend old ones; the table below records which builds on which. The incident
 autopsies in `03` are the reason most of the other folders exist.
 

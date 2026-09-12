@@ -1,5 +1,7 @@
 # 03 — agent-ops-playbook
 
+_Русская версия: [README.ru.md](README.ru.md)_
+
 **The pattern book: what actually breaks when LLM agents run 24/7, and the patterns that fix it.** Written from production incidents, not theory.
 
 > This is the heart of the repository. Tools come and go; these patterns are the accumulated scar tissue.

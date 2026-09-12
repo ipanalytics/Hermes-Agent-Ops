@@ -1,5 +1,7 @@
 # 17 — model-slot-bakeoff
 
+_Русская версия: [README.ru.md](README.ru.md)_
+
 **A price list is dollars per million tokens. It does not tell you what one request costs.**
 
 > A reasoning model can burn six times the output tokens of a plain one on the identical

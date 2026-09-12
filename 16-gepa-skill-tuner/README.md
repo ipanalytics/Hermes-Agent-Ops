@@ -1,5 +1,7 @@
 # 16 — gepa-skill-tuner
 
+_Русская версия: [README.ru.md](README.ru.md)_
+
 **Optimize the parameter you actually ship — the prompt or the SKILL.md — against a task set with ground truth.**
 
 > GEPA (*Reflective Prompt Evolution Can Outperform Reinforcement Learning*, arXiv 2507.19457,

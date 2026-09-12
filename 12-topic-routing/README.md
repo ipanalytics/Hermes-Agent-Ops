@@ -1,5 +1,7 @@
 # 12 — topic-routing
 
+_Русская версия: [README.ru.md](README.ru.md)_
+
 **A whole multi-agent system in one chat app: Telegram topics as domains, ignore-lists as walls, the DM as the front desk.**
 
 > We run several roles and dozens of cron digests in a single group where every

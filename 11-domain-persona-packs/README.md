@@ -1,5 +1,7 @@
 # 11 — domain-persona-packs
 
+_Русская версия: [README.ru.md](README.ru.md)_
+
 **Copy-paste professional roles for agents: chef with inventory, doctor with a limits file, analyst with sources — a role in 10 minutes, not a week.**
 
 > The multi-role skeleton (`04-role-profiles`) is the engine; these are the

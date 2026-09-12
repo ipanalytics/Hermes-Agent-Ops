@@ -1,5 +1,7 @@
 # 05 — cron-of-crons
 
+_Русская версия: [README.ru.md](README.ru.md)_
+
 **Self-observing scheduled jobs: the operator sweep, freshness checks, and the who-watches-whom chain.**
 
 ## What you get

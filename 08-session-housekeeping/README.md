@@ -1,5 +1,7 @@
 # 08 — session-housekeeping
 
+_Русская версия: [README.ru.md](README.ru.md)_
+
 **The memory and session lifecycle toolkit: tame the 2.5K-message session, keep memory lean, and never lose a fact worth keeping.**
 
 > The pattern behind it: **three tiers** — sessions (ephemeral, reset daily), memory (small,

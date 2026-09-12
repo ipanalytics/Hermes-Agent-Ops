@@ -1,5 +1,7 @@
 # Example — shell-safety classifier
 
+_Русская версия: [README.ru.md](README.ru.md)_
+
 The task set behind module 15's `bash_guard` rules, expressed as a prompt-optimization task:
 29 labelled commands (including the quote-obfuscated and decoder-piped evasions), metric =
 exact match on SAFE/UNSAFE.

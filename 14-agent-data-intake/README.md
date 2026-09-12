@@ -1,5 +1,7 @@
 # 14 — agent-data-intake
 
+_Русская версия: [README.ru.md](README.ru.md)_
+
 **Reliable device-to-agent data intake: BLE devices, phone relays, and any webhook-posting source. The receiver is a systemd user unit (not a gateway cron), it is multi-threaded so one stuck client cannot kill it, and the device side never trusts the network — it spools and retries until delivered.**
 
 Revision 2026-09-07, after an incident where the intake receiver died overnight and a morning health reading arrived **12 hours late — but not lost**: the device-side queue held it and flushed when the receiver came back.

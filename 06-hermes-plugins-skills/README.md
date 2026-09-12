@@ -1,5 +1,7 @@
 # 06 — Hermes plugins & skills
 
+_Русская версия: [README.ru.md](README.ru.md)_
+
 **Packaging the proven pieces as Hermes plugins, skills, and cron recipes — and contributing them upstream.**
 
 ## What you get

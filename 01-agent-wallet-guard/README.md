@@ -2,7 +2,7 @@
 
 **Watchdog for LLM API spend: measure the *fact*, find the *culprit session*, alert only when something is wrong.**
 
-## What you get here (real, runnable)
+## What you get
 
 - `agent_wallet_guard.py` — the production watchdog (this exact logic ran every 30 min for weeks). Empty stdout when healthy; throttled alerts on: low balance (1/12h) and daily burn over threshold (1/4h), each with the top session by cache-read tokens as culprit candidate.
 - `guard_config.example.env` — every knob, commented.
@@ -21,7 +21,3 @@ Provider dashboards show totals, not *which session* burned the money. One giant
 ## Hooking it into a cron (the way we run it)
 
 `scheduler: every 30m, no LLM agent, stdout is delivered verbatim` — the script *is* the job.
-
-## Why this gets stars
-
-Money pain is universal; per-session attribution is rare; "silent when OK" is the alerting design people wish they had.

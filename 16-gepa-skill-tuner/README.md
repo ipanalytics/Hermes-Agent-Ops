@@ -63,7 +63,7 @@ Conflicts are surfaced, never averaged away silently — a set where the same re
 different "correct" answers is a labelling problem upstream, and no prompt can fix it.
 `--keep-duplicates` runs the old behaviour when you want to show the difference.
 
-## The discipline that keeps this honest
+## Rules
 
 1. **The dataset is cleaned before anything is measured.** Duplicate inputs are collapsed and
    label conflicts reported (see the section above); without that the split leaks and the
@@ -103,8 +103,7 @@ Run it against surfaces with a real, repeatable failure rate and a cheap label:
 - a **skill section** whose checklist `hermes verify` can score,
 - a **routing/dispatch prompt** scored against logged (request → correct tool/skill) pairs.
 
-Do **not** point it at a task your model already solves — that is the most common way to burn
-an afternoon and call the null result a win.
+Do not point it at a task the model already solves; the run will report no change.
 
 ## Safety notes
 

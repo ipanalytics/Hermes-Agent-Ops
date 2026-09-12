@@ -4,7 +4,7 @@
 
 > This is the heart of the repository. Tools come and go; these patterns are the accumulated scar tissue.
 
-## What you get here (real content)
+## What you get
 
 - `README.md` — chapter outline (the patterns, summarized below)
 - `incidents/` — sanitized autopsies, each: symptom → evidence → root cause → fix → prevention → lesson
@@ -12,7 +12,7 @@
   - `gateway-alive-but-dead.md` — the DB sidecar race that made a live process a dead bot
 - `decision-trees.md` — the actual checklists: "agent slow?", "balance dropping?", "digest missing?", "bot dead but process alive?", "duplicated message?"
 
-## The chapters (each will grow a full pattern page)
+## Chapters
 
 ### 1. Roles and economics — "boss and workers"
 The principal conversation runs the *smart* model; cron/templated jobs run the *cheap* one; aux calls (compression, titles, review, vision) run the cheapest capable one. Estimate upgrades on the DM only — extrapolating all traffic overstates cost ~3x. A controller must not be the same model as the worker.
@@ -31,7 +31,3 @@ Every watcher is watched by a *different* layer that survives the watcher. Fresh
 
 ### 6. Voice-input misunderstandings
 Transcriptions garble domain terms. Treat every name from a transcript as a hypothesis; cross-check against the user's actual inventory/recipes before lecturing. Agents hallucinate confidently about the user's own pantry — embarrassing and avoidable.
-
-## Why this gets stars
-
-Everybody is *running* agents in production now; almost nobody publishes what actually breaks. Repos of theory are a dime a dozen; autopsy-driven patterns are rare.

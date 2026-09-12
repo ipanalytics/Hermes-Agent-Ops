@@ -2,7 +2,7 @@
 
 **Self-observing scheduled jobs: the operator sweep, freshness checks, and the who-watches-whom chain.**
 
-## What you get here (real, copy-paste)
+## What you get
 
 - `operator_prompt.example.md` — the daily sweep brief: self-contained, economy-minded, output format (one line when normal, ⚠️/🔴 per incident), dedupe via continuity, **schedule-aware freshness**, deliberate exclusions.
 - `watch-table.md` — the who-watches-whom matrix + survival analysis (what survives a gateway restart) + the rule: every watcher is watched by a different layer that survives it.
@@ -22,7 +22,3 @@ cron → script → external daemon → guard cron. Every layer is watched by a 
 
 ### Delivery discipline
 Data collectors deliver locally (never message the user); real alerts go to a topic; one-shot reminders are fixed-text no-agent jobs that self-disable.
-
-## Why this gets stars
-
-"Your cron stopped a week ago and nobody noticed" is universal. A ready-made operator brief + watch-table + delivery policy is copy-paste value.

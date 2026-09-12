@@ -1,7 +1,7 @@
 # Series map — how the folders continue each other
 
-The numbered folders are one evolving story, not islands: new ideas extend old
-ones. The incident autopsies in `03` explain why most other folders exist.
+New modules extend old ones; the table below records which builds on which. The incident
+autopsies in `03` are the reason most of the other folders exist.
 
 ## The threads
 
@@ -24,7 +24,7 @@ ones. The incident autopsies in `03` explain why most other folders exist.
 | 15 | agent-tool-guardrails | **02**'s outside-judgement stance turned on commands and worktrees; guards what **07**-approved prompts actually do; the lane half pairs with Hermes' own worktree isolation |
 | 16 | gepa-skill-tuner | the repair loop after **07**: the linter blocks a bad prompt, the tuner rewrites one against labelled traffic; its task sets are exactly what **15**'s gates and **03**'s incidents produce |
 
-## How a newcomer should read it
+## Reading order
 
 1. **Start at 03** — the incidents (10 minutes) explain why every other folder exists.
 2. **Grab 04 + 11** to stand up their own roles.
@@ -32,8 +32,7 @@ ones. The incident autopsies in `03` explain why most other folders exist.
 4. **Ship every cron prompt through 07** and generate docs with 09.
 5. **Watch it all** with 05, and let 02/06 keep the services alive.
 
-## Contribution shape
+## Contribution rules
 
-Each folder owns its README pitch + artifacts. A PR that touches a folder should
-update the map row. Folders with code (01, 02, 07, 09, 10) get tests before the
-docs do — the code is the proof, the README is the promise.
+Each folder owns its README and its artifacts. A PR that touches a folder updates the map
+row. New code ships with a test that exercises it, and the README lists the real files.

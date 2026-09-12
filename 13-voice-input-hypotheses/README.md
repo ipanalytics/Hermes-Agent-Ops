@@ -41,10 +41,3 @@ voice_pitfalls:
   - transcript "redmi file" -> README file
   rule: names from voice input are hypotheses; verify against inventory/files before acting
 ```
-
-## Why this gets stars
-
-Voice is how a growing share of users talk to agents, and transcription errors
-are universal — yet almost nobody ships the *agent-side* mitigation. The
-"hypothesis before lecture" rule is one paragraph people immediately recognize
-and paste into their own SOUL files.

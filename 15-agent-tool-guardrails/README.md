@@ -2,11 +2,10 @@
 
 **Stop trusting the agent's own report: gate the commands, vet the skills, and let the orchestrator accept the work.**
 
-> Two failure modes cost more than any bug in the agent loop. First: a destructive command
-> goes through because the approval layer greps the text for scary words — `r''m -rf /`,
-> `$(...)`, `bash -c "..."` and `base64 -d | sh` all walk past a regex. Second: several
-> writers share one checkout, and the only evidence anyone has is the writer's sentence
-> "done, tests pass." Both are engineering problems with cheap, deterministic answers.
+> Two failure modes. First: a destructive command goes through because the approval layer
+> greps the text for scary words — `r''m -rf /`, `$(...)`, `bash -c "..."` and
+> `base64 -d | sh` all walk past a regex. Second: several writers share one checkout and the
+> only evidence is the writer's sentence "done, tests pass."
 
 ## What you get here
 
@@ -65,10 +64,9 @@ python3 hooks/skill_scan.py --hook                 # pre_tool_call mode: block t
 Context beats any single pattern. A lone mention of `~/.ssh/id_...` appears in every SSH
 tutorial, so a secret path alone is **MEDIUM** and escalates to **HIGH** only when the same
 file also carries an egress path; `curl | bash` against a documented installer stays MEDIUM.
-Our own library audit is the honest advertisement for the tuning: 546 files, 28 HIGH before
-the combination rules, and after them the remaining HIGH hits are almost entirely legitimate
-documentation quoting `~/.hermes/.env`. Expect false positives on your own docs — review
-them, do not fork the rules per file. The repository's own test corpus will flag itself
+Library audit with these rules: 546 files, 28 HIGH before the combination rules, after them
+almost all remaining HIGH hits are legitimate documentation quoting `~/.hermes/.env`. Expect
+false positives on your own docs; review them instead of forking the rules per file. The repository's own test corpus will flag itself
 (attack strings are the fixtures); that is expected.
 
 ## Lanes: parallel writers, one acceptance gate
@@ -81,8 +79,8 @@ lanes.py merge  REPO --into integration   # serial merge, aborts on conflict
 lanes.py report REPO                      # evidence JSON: heads, diffs, gate results
 ```
 
-The gate is the point: the orchestrator re-runs the verification inside each lane and closes
-the card with a commit id and a command's exit code, never with a worker's self-report. A red
+The orchestrator re-runs the verification inside each lane and closes the card with a commit
+id and a command's exit code, not with a worker's self-report. A red
 lane is not merged; a conflict aborts the merge and leaves the lane isolated.
 
 Three details that only appear when two writers run at once, all learned by breaking them:

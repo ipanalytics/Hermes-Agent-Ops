@@ -46,4 +46,3 @@ plus at most one reminder every 30 minutes while it persists.
 - **The human's topic is a fire channel.** If the alert topic accumulates more
   than a handful of messages a day on a healthy day, the policy is wrong —
   move routine content to digests and keep the channel for transitions.
-

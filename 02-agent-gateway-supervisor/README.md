@@ -15,7 +15,7 @@ Revision 2026-09-07: rebuilt after an incident where the old design (self-writte
 | `polkit/49-mynet-hermes.rules` | lets user `hermes` run `systemctl restart/start` on the two units. Without it: `Access denied` (sudo is unusable under `NoNewPrivileges`). Install as root into `/etc/polkit-1/rules.d/`. |
 | `scripts/hermes-update-run.sh` | the *only* sanctioned update flow: pause supervisor → `systemctl stop dashboard` → `hermes update --yes` → `systemctl restart gateway` + `systemctl start dashboard` → heartbeat/unit verification → ✅/❌ report. Stops the dashboard first because the update tool treats a running dashboard as "manual-serve" and would re-spawn it in a transient cron scope (the original source of double management). |
 
-## Hard-won rules
+## Operational rules
 
 1. **One owner per process.** The gateway was being managed by systemd *and* a self-written watchdog running `hermes gateway restart` at the same time. Result: "Gateway already running (PID …)" → systemd failed after 8 attempts, and a hung `hermes gateway restart` held `state.db`/`-wal`/`-shm` open through multiple fds, so new sessions could not write. Supervision and restarts happen **only** through `systemctl`.
 2. **`hermes gateway restart` is banned from supervisors.** If the DB was swapped under live processes, Hermes halts writes and diverts messages to `sessions/*.jsonl` + `pending_messages/`; the DB itself can come out `malformed`. A robot restarting components does not fix that — it makes it worse. The supervisor escalates instead.

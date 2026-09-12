@@ -42,9 +42,3 @@ role: operator
 ignore_topics: [private, kitchen]
 report_topic: ops
 ```
-
-## Why this gets stars
-
-Everybody ends up with 17 bots or one bot in 17 chats. Topics-as-domains with
-mechanical walls is the "one home, many rooms" answer — a reference people can
-copy without rebuilding their whole integration.

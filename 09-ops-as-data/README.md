@@ -20,9 +20,3 @@
 
 - `07-fresh-prompt-linter` guards the *prompts* of agent jobs; this guards the *schedule docs*.
 - The export feeds the who-watches-whom matrix in `05-cron-of-crons` automatically.
-
-## Why this gets stars
-
-"Which crons even run here, and when?" is the first question of any agent-ops handover.
-A generator that answers it from data — with the freshness rules encoded — is instant value,
-and the drift-proofing story is a good one.

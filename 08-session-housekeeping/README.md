@@ -43,8 +43,3 @@ failing compression is how a calm week becomes a 7x bill (full story in
 - The working contract is the three-tier table and the rules above; the
   example prompts and config snippets live next to this README as they are
   generalized from running setups.
-
-## Why this gets stars
-
-Session sprawl is the most common "why is my agent slow and dumb" answer on earth.
-A three-tier lifecycle with concrete jobs is copy-paste infrastructure.

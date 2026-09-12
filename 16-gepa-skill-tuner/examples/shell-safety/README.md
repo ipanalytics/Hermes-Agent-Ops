@@ -9,7 +9,7 @@ bash run.sh                       # 60 metric calls, writes report.json
 MAX_CALLS=150 bash run.sh --write # write the improved prompt back over seed_prompt.txt
 ```
 
-**Read the result honestly.** With a strong task model this set is already solved by the seed
+**Read the result.** With a strong task model this set is already solved by the seed
 prompt (our run: seed ≈ 1.0 on the validation split, three candidates explored, no change
 survived). That is the correct outcome and the reason the wrapper prints
 `No prompt change survived validation` instead of a fake improvement: prompt optimization

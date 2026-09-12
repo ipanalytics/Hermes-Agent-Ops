@@ -21,7 +21,7 @@ A device (BLE cuff, phone app, IoT sensor) posts readings to a webhook receiver.
 | `webhook_receiver.py` | minimal single-file receiver: `ThreadingHTTPServer`, shared-token check (header/query), SQLite append. ~100 lines, stdlib only. |
 | `device_side/queue_pattern.py` | the device-side contract in code: write every reading to a spool file first, then POST; on failure keep retrying every cycle; rename to `*.delivered` only after HTTP success. Data survives receiver outages of any length. |
 
-## Hard-won rules
+## Operational rules
 
 1. **The receiver is infrastructure, not an agent feature.** Give it its own unit and its own restart policy. If it lives inside the gateway's world, a gateway incident becomes a data-intake incident too (observed: one outage chain took down both, and the morning reading queued for 12 h).
 2. **One stuck client must not be able to kill the server.** Single-threaded stdlib servers wedge on a stalled connection — the whole process stops responding, including its own ping endpoint. Use `ThreadingHTTPServer` (or an async server). The "alive but dead" failure exists for intake servers too, not just gateways.

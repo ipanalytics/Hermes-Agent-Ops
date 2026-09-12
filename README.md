@@ -5,7 +5,7 @@
 <p align="center">
   <a href="#"><img src="https://img.shields.io/badge/License-MIT%20%2B%20CC--BY--4.0-blue.svg" alt="License"></a>
   <a href="#"><img src="https://img.shields.io/badge/Status-active-success.svg" alt="Status"></a>
-  <a href="#"><img src="https://img.shields.io/badge/Version-0.4.1-orange.svg" alt="Version"></a>
+  <a href="#"><img src="https://img.shields.io/badge/Version-0.4.2-orange.svg" alt="Version"></a>
   <a href="#"><img src="https://img.shields.io/badge/Python-3.10%2B-3776AB.svg" alt="Python"></a>
   <a href="#"><img src="https://img.shields.io/badge/Platform-Linux-lightgrey.svg" alt="Platform"></a>
   <a href="#"><img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg" alt="PRs"></a>
@@ -21,14 +21,21 @@ The primary target is [Hermes Agent](https://hermes-agent.nousresearch.com); the
 
 ## Overview
 
-Agent deployments fail in a small set of recurring ways: one session grows until it dominates spend and response quality, the gateway process stays alive while refusing new writes, scheduled jobs drift silently, and documentation of the schedule diverges from reality. This repository treats those failure modes as engineering problems with defined detection and response paths:
+Four failure modes account for most agent downtime and spend:
+
+- one session grows until it dominates spend and response quality,
+- the gateway process stays alive while refusing new writes,
+- scheduled jobs drift or die silently,
+- the documented schedule diverges from the real one.
+
+Each one is handled by a component with a defined detection rule and response path:
 
 - spend is anchored to the provider balance and attributed per session,
 - process health is judged by heartbeat *and* fatal log markers, from outside the gateway,
 - every scheduled prompt is checked for self-containment before it ships,
 - the ops documentation is generated from the job list rather than maintained by hand.
 
-The repository is a monorepo: fourteen modules under numbered directories, each independently readable, all cross-referencing through `SERIES.md`.
+Sixteen modules under numbered directories, each readable on its own, cross-referenced in `SERIES.md`.
 
 ---
 
@@ -211,7 +218,7 @@ In scope: observability and spend accounting for agent traffic, external supervi
 ```
 hermes-agent-ops/
 ├── 01-agent-wallet-guard/        agent_wallet_guard.py, guard_config.example.env
-├── 02-agent-gateway-supervisor/  gateway_supervisor.py, supervisor_guard.sh
+├── 02-agent-gateway-supervisor/  gateway_supervisor.py, systemd/, polkit/, scripts/
 ├── 03-agent-ops-playbook/        incidents/, decision-trees.md
 ├── 04-role-profiles/             template/, docs/
 ├── 05-cron-of-crons/             operator_prompt.example.md, watch-table.md, delivery-policy.md

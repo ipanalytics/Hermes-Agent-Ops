@@ -30,12 +30,7 @@ Wire it as a gate: a scheduler job with a prompt that fails the linter never get
 We run every recurring prompt through it before shipping; it has flagged real bugs
 ("as mentioned above" in a job that had no "above").
 
-## Honest limits
+## Limitations
 
 It is a heuristic, not a guarantee: a prompt can pass and still fail (missing world
 knowledge), or fail and still work. Treat the verdict as a strong signal, not proof.
-
-## Why this gets stars
-
-Everybody ships cron prompts; almost nobody checks them for the fresh-session trap.
-Deterministic, zero-cost, CI-able — and the failure class is universal.

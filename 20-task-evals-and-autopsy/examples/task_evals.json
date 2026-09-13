@@ -1,0 +1,35 @@
+{
+ "checks": [
+  {
+   "id": "digest-cards",
+   "kind": "output_fresh",
+   "jobs": [
+    "job-digest-morning"
+   ],
+   "max_age_hours": 30,
+   "min_bytes": 2000,
+   "pattern": "^\\s*(?:№\\s*\\d+|\\d+)[).]?\\s",
+   "min_hits": 3
+  },
+  {
+   "id": "mail-brief",
+   "kind": "output_fresh",
+   "jobs": [
+    "job-mail-morning"
+   ],
+   "max_age_hours": 30,
+   "min_bytes": 500
+  },
+  {
+   "id": "failure-streaks",
+   "kind": "no_failures",
+   "max_streak": 2
+  },
+  {
+   "id": "queue",
+   "kind": "queue_clear",
+   "command": "your-queue-cli --list",
+   "max_recent_stale": 3
+  }
+ ]
+}

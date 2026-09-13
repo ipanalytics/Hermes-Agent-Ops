@@ -1,0 +1,5 @@
+[
+  {"label": "qwen3-coder-plus", "model": "qwen/qwen3-coder-plus"},
+  {"label": "qwen3.8-27b (default)", "model": "qwen/qwen3.8-27b"},
+  {"label": "qwen3.8-27b (low effort)", "model": "qwen/qwen3.8-27b", "extra": {"reasoning_effort": "low"}}
+]

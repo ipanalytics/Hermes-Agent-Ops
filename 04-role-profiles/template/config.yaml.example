@@ -1,0 +1,46 @@
+# config.yaml.example — per-role model pinning
+# Roles are cheap where they can be and careful where they must be.
+
+# coordinator (the human's main chat): the smartest model you can afford
+coordinator:
+  model: provider/smart-model
+  provider: primary
+
+# coder: worker model + sandboxed terminal
+coder:
+  model: provider/worker-coder
+  provider: primary
+  sandbox: proot
+
+# chef: cheap, large context (big SOUL + inventory + recipes)
+chef:
+  model: provider/cheap-flash
+  provider: secondary   # cheap provider; context window matters more than rank
+
+# doctor: careful, full-size model, low frequency
+doctor:
+  model: provider/careful-full
+  provider: primary
+
+# operator (oversight): a THIRD model — the reviewer must not grade its own work
+operator:
+  model: provider/third-model
+  provider: secondary
+  schedule: "0 5 * * *"          # daily sweep
+  deliver: telegram:<chat>:<ops-topic>
+
+# aux calls (compression, titles, review, vision) — cheapest capable provider
+aux:
+  provider: secondary
+  model: provider/cheap-aux
+
+# session hygiene
+session_reset:
+  mode: both          # daily + idle
+  at_hour: 2          # UTC
+  idle_minutes: 240
+  notify: false
+
+# compression: shrink before it becomes unpayable
+compression:
+  threshold_tokens: 250000

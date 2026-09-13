@@ -1,0 +1,47 @@
+[
+  {
+    "id": "ab12cd34",
+    "name": "morning train digest",
+    "schedule": "0 6 * * 1-5",
+    "agent": true,
+    "deliver": "topic: commutes",
+    "notes": "Mon-Fri only; deviations only, silence when on schedule",
+    "watcher": "operator"
+  },
+  {
+    "id": "cd34ef56",
+    "name": "balance guard",
+    "schedule": "*/30 * * * *",
+    "agent": false,
+    "deliver": "topic: alerts",
+    "notes": "empty stdout = silent; alert on low balance / daily burn",
+    "watcher": "operator"
+  },
+  {
+    "id": "ef56gh78",
+    "name": "price watch (releases)",
+    "schedule": "15 11 * * *",
+    "agent": true,
+    "deliver": "topic: releases",
+    "notes": "monitor-gated: LLM only wakes when the RSS diff is non-empty",
+    "watcher": "operator"
+  },
+  {
+    "id": "gh78ij90",
+    "name": "media digest (weekend)",
+    "schedule": "0 10 * * 7",
+    "agent": true,
+    "deliver": "topic: media",
+    "notes": "continuity dedupe: sends only the delta vs its previous run",
+    "watcher": "operator"
+  },
+  {
+    "id": "ij90kl12",
+    "name": "kitchen defrost reminder",
+    "schedule": "2026-09-09T15:30:00",
+    "agent": false,
+    "deliver": "origin (DM)",
+    "notes": "one-shot: absolute timestamp, self-disables after firing",
+    "watcher": "—"
+  }
+]

@@ -1,0 +1,11 @@
+{
+ "want_year": 2026,
+ "quality_weight": 1.0,
+ "year_weight": 1.5,
+ "tag_weights": {
+  "russian audio": 2.0,
+  "subs": 0.5,
+  "remux": 1.5,
+  "cam": -3.0
+ }
+}

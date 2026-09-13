@@ -1,0 +1,42 @@
+{
+ "prices": {
+  "plain-flash": [
+   0.065,
+   0.18
+  ],
+  "mid-flash": [
+   0.15,
+   0.6
+  ],
+  "reasoning": [
+   0.3,
+   1.2
+  ],
+  "cheap-old": [
+   0.01,
+   0.02
+  ]
+ },
+ "tiers": {
+  "plain": {
+   "model": "plain-flash",
+   "provider": "openrouter"
+  },
+  "mid": {
+   "model": "mid-flash",
+   "provider": "openrouter"
+  },
+  "reasoning": {
+   "model": "reasoning",
+   "provider": "openrouter"
+  }
+ },
+ "bands": {
+  "min_runs": 3,
+  "plain_median": 400,
+  "plain_error": 0.05,
+  "reasoning_p90": 3000,
+  "error_heavy": 0.2
+ },
+ "_note": "prices = USD per million tokens [input, output]. Tiers are intentionally generic; map them to your providers."
+}

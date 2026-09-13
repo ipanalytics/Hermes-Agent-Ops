@@ -1,0 +1,26 @@
+{
+ "_default": [
+  0.15,
+  0.6
+ ],
+ "prices": {
+  "plain-flash": [
+   0.065,
+   0.18
+  ],
+  "mid-flash": [
+   0.15,
+   0.6
+  ],
+  "reasoning": [
+   0.3,
+   1.2
+  ]
+ },
+ "roles": {
+  "media": "release|digest|media|download",
+  "mail": "mail|inbox|post",
+  "infra": "watch|guard|eval|audit|health|backup",
+  "research": "research|paper|trend"
+ }
+}

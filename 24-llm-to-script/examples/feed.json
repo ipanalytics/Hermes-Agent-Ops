@@ -1,0 +1,42 @@
+[
+ {
+  "title": "Some Film (2026)",
+  "link": "https://example.org/a",
+  "year": 2026,
+  "quality": "1080p",
+  "tags": [
+   "russian audio",
+   "subs"
+  ],
+  "published": "2026-09-12T20:00:00"
+ },
+ {
+  "title": "Old Film (2019)",
+  "link": "https://example.org/b",
+  "year": 2019,
+  "quality": "720p",
+  "tags": [],
+  "published": "2026-09-12T21:00:00"
+ },
+ {
+  "title": "Big Film (2026)",
+  "link": "https://example.org/c",
+  "year": 2026,
+  "quality": "2160p",
+  "tags": [
+   "russian audio",
+   "remux"
+  ],
+  "published": "2026-09-13T06:00:00"
+ },
+ {
+  "title": "Cam Rip (2026)",
+  "link": "https://example.org/d",
+  "year": 2026,
+  "quality": "1080p",
+  "tags": [
+   "cam"
+  ],
+  "published": "2026-09-13T07:00:00"
+ }
+]

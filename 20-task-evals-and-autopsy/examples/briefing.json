@@ -1,0 +1,17 @@
+{
+ "work_items": "~/.hermes/data/research_backlog.json",
+ "work_statuses": [
+  "candidate",
+  "trying",
+  "adopted"
+ ],
+ "work_limit": 8,
+ "changes_log": "~/.hermes/data/CHANGELOG.md",
+ "changes_limit": 5,
+ "health_files": {
+  "probes": "~/.hermes/data/probes_last.json",
+  "task evals": "~/.hermes/data/task_evals.json"
+ },
+ "failure_jobs": "~/.hermes/cron/jobs.json",
+ "out_path": "~/.hermes/data/briefing.md"
+}

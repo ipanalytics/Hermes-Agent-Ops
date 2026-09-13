@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<OAI-PMH xmlns="http://www.openarchives.org/OAI/2.0/">
+  <responseDate>2026-09-13T05:00:00Z</responseDate>
+  <request verb="ListRecords">https://export.arxiv.org/oai2</request>
+  <ListRecords>
+    <record>
+      <header><identifier>oai:arXiv.org:2609.01345</identifier><datestamp>2026-09-02</datestamp></header>
+      <metadata>
+        <oai_dc:dc xmlns:oai_dc="http://www.openarchives.org/OAI/2.0/oai_dc/" xmlns:dc="http://purl.org/dc/elements/1.1/">
+          <dc:title>Cheap verifiers, large blind spots</dc:title>
+          <dc:creator>A. Researcher</dc:creator>
+          <dc:subject>cs.AI</dc:subject>
+          <dc:description>We measure how often cheap verification accepts incorrect answers.</dc:description>
+          <dc:date>2026-09-02</dc:date>
+        </oai_dc:dc>
+      </metadata>
+    </record>
+    <record>
+      <header status="deleted"><identifier>oai:arXiv.org:2609.00001</identifier></header>
+    </record>
+    <resumptionToken>token-abc</resumptionToken>
+  </ListRecords>
+</OAI-PMH>

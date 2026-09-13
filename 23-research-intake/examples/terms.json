@@ -1,0 +1,8 @@
+{
+ "evals": "\\b(eval|evaluation|benchmark|bench|leaderboard|rubric)s?\\b",
+ "cost/tokens": "\\b(token|cost|pricing|budget|efficien|inference cost|throughput)\\w*\\b",
+ "agent memory": "\\b(memory|memor|recall|retrieval-augmented|context management)\\w*\\b",
+ "harness/skills": "\\b(harness|scaffold|skill|tool use|tool-calling|workflow)\\w*\\b",
+ "reasoning": "\\b(reasoning|chain-of-thought|self-consistency|test-time|deliberat)\\w*\\b",
+ "multi-agent": "\\b(multi-agent|swarm|debate|orchestrat|collaborat)\\w*\\b"
+}

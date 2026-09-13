@@ -1,0 +1,9 @@
+{
+ "audit_path": "~/.hermes/cron/usage_audit.jsonl",
+ "state_path": "~/.hermes/data/budget_guard_state.json",
+ "cap_tokens_per_day": 12000000,
+ "top_n": 3,
+ "pause_command": "hermes cron pause {job_id}",
+ "resume_command": "hermes cron resume {job_id}",
+ "_note": "pause_command/resume_command are arbitrary shell templates — swap in your own scheduler CLI"
+}

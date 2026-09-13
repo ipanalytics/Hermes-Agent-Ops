@@ -1,0 +1,7 @@
+{
+  "_comment": "Tunable policy for bash_guard.py. Only keys present here override the built-in defaults; delete a key to fall back. block_patterns = your own hard blocks (regex, matched against the normalised command).",
+  "log_all": false,
+  "protected_vm_ids": ["100"],
+  "allow_regexes": [],
+  "block_patterns": ["CANARY_GUARD_TEST"]
+}

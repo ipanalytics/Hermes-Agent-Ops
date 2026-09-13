@@ -1,0 +1,63 @@
+{
+ "_note": "Probe set = the encoded definition of 'known good'. Adding a probe is a deliberate act; changing one is changing the contract.",
+ "probes": [
+  {
+   "id": "report-fresh",
+   "kind": "file_fresh",
+   "title": "Nightly report is fresh and not empty",
+   "path": "~/data/report.json",
+   "max_age_hours": 30,
+   "min_bytes": 500
+  },
+  {
+   "id": "no-empty-artifacts",
+   "kind": "files_no_empty",
+   "title": "No zero-byte artifacts left behind",
+   "dir": "~/data/spool",
+   "glob": "*.json",
+   "max_empty": 0
+  },
+  {
+   "id": "state-schema",
+   "kind": "json_keys",
+   "title": "State file keeps its required keys",
+   "path": "~/data/state.json",
+   "required_keys": [
+    "items"
+   ],
+   "min_items": 1
+  },
+  {
+   "id": "guard-silent",
+   "kind": "script_silent",
+   "title": "Budget guard stays quiet under the cap",
+   "script": "~/scripts/guards/budget_guard.py",
+   "expect": "empty",
+   "timeout_s": 120
+  },
+  {
+   "id": "collector-runs",
+   "kind": "script_silent",
+   "title": "Collector exits cleanly",
+   "script": "~/scripts/collector.py",
+   "expect": "any",
+   "timeout_s": 180
+  },
+  {
+   "id": "digest-has-cards",
+   "kind": "text_match",
+   "title": "Digest contains at least three cards",
+   "path": "~/data/last_digest.md",
+   "pattern": "^\\s*(?:№\\s*\\d+|\\d+)[).]?\\s",
+   "min_count": 3
+  },
+  {
+   "id": "outputs-clean",
+   "kind": "secrets_clean",
+   "title": "No secrets in recent job outputs",
+   "dir": "~/cron/output",
+   "glob": "*.md",
+   "files": 25
+  }
+ ]
+}

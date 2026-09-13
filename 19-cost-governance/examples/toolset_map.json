@@ -1,0 +1,8 @@
+{
+ "browser": "browser_|headless|screenshot|cdp",
+ "web": "web_search|web_extract|https?://",
+ "terminal": "bash|python3\\\\s|systemctl|ssh\\\\s",
+ "file": "read_file|write_file|~/\\\\.hermes|/home/",
+ "memory": "\\\\bmemory\\\\b|память|remember",
+ "skills": "skill_view|skill_manage|\\\\bskill\\\\b"
+}

@@ -1,0 +1,32 @@
+{
+  "jobs": [
+    {
+      "id": "job1",
+      "name": "morning routine",
+      "schedule": "0 6 * * *",
+      "command": "echo 'morning task'",
+      "description": "Time-critical morning task"
+    },
+    {
+      "id": "job2",
+      "name": "research audit",
+      "schedule": "0 12 * * *", 
+      "command": "echo 'research task'",
+      "description": "Flexible research task that can be moved"
+    },
+    {
+      "id": "job3",
+      "name": "weekly translation",
+      "schedule": "0 14 * * *",
+      "command": "echo 'translation task'", 
+      "description": "Heavy translation task suitable for night hours"
+    },
+    {
+      "id": "job4",
+      "name": "daily backup",
+      "schedule": "0 2 * * *",
+      "command": "echo 'backup task'",
+      "description": "Already scheduled during off-peak hours"
+    }
+  ]
+}

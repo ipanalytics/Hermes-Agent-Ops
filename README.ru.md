@@ -7,7 +7,7 @@ _English version: [README.md](README.md)_
 <p align="center">
   <a href="#"><img src="https://img.shields.io/badge/License-MIT%20%2B%20CC--BY--4.0-blue.svg" alt="License"></a>
   <a href="#"><img src="https://img.shields.io/badge/Status-active-success.svg" alt="Status"></a>
-  <a href="#"><img src="https://img.shields.io/badge/Version-0.5.0-orange.svg" alt="Version"></a>
+  <a href="#"><img src="https://img.shields.io/badge/Version-0.6.0-orange.svg" alt="Version"></a>
   <a href="#"><img src="https://img.shields.io/badge/Python-3.10%2B-3776AB.svg" alt="Python"></a>
   <a href="#"><img src="https://img.shields.io/badge/Platform-Linux-lightgrey.svg" alt="Platform"></a>
   <a href="#"><img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg" alt="PRs"></a>
@@ -37,7 +37,7 @@ _English version: [README.md](README.md)_
 - каждый запланированный промпт проверяется на самодостаточность перед отправкой,
 - эксплуатационная документация генерируется из списка заданий, а не ведётся вручную.
 
-Двадцать четыре модуля в пронумерованных каталогах, каждый читается самостоятельно, с перекрёстными ссылками в `SERIES.md`.
+Тридцать три модуля в пронумерованных каталогах, каждый читается самостоятельно, с перекрёстными ссылками в `SERIES.md`.
 
 ---
 
@@ -91,6 +91,15 @@ _English version: [README.md](README.md)_
 | `15-agent-tool-guardrails` | Оценка извне, применяемая к командам и worktree: гейт `pre_tool_call` на основе AST (не regex по строке), сканер skill-ов на инъекции/эксфильтрацию до того, как установке будет оказано доверие, и дорожки git-worktree, карточки которых закрываются по доказательствам, созданным оркестратором. |
 | `16-gepa-skill-tuner` | Рефлексивная эволюция промптов (GEPA), нацеленная на артефакты, которые агент реально поставляет, — промпт и SKILL.md — с заявленным бюджетом метрик, дедуплицированным датасетом, отложенной выборкой (held-out) и diff в качестве результата. |
 | `17-model-slot-bakeoff` | Подбирает модель для слота, измеряя реальные задачи этого слота: тарифицируемая стоимость на задачу, задержка, апстрим, который реально обслуживал, оценка на скрытом тесте и поддержка tool-call. |
+| `25-ransomware-monitor` | Следит за публичными лентами об атаках шифровальщиков по регионам, убирает повторы и поднимает только новые случаи: сектор жертвы и ссылка на источник. |
+| `26-querylog-domain-scout` | Сводит журнал запросов AdGuard по клиентам: видно, какое устройство к каким доменам обращается и что появилось впервые. |
+| `27-ecosystem-map` | Собирает живую карту агентского хозяйства из списка заданий и профилей, чтобы документация не расходилась с реальностью. |
+| `28-research-scout` | Выкачивает arXiv по OAI-PMH, оценивает работы по темам и приёму, пишет бриф для модели и стабильный отпечаток, из-за которого пустые недели проходят молча. |
+| `29-digest-delivery-health` | Ведёт журнал доставок дайджестов (отправлено, тишина, сбой) и показывает каналы, которые перестали работать. |
+| `30-thinking-layer-cost` | Показывает, сколько стоит думающий слой за сутки относительно потолка, чтобы дорогая часть оставалась на виду. |
+| `31-schedule-audit` | Разбирает расписание: что стоит увести в ночь и что реально стоит денег. |
+| `32-compaction-effect-check` | Сравнивает смену политики сжатия контекста с её же окнами до и после, вместо предположения, что стало лучше. |
+| `33-routing-outcomes` | Считает, как каждая модель справляется с настоящими заданиями расписания, — именно это решает перепин. |
 | `18-harness-probes` | Детерминированные приёмочные пробы для самой обвязки: проверки по JSON над артефактами и сторожевыми скриптами, база, которую двигает только `accept`, и режим `check`, падающий на регрессии. |
 | `19-cost-governance` | Лимит бюджета с зубами — раз в сутки ставит на паузу N самых дорогих заданий и возвращает их, — цена **успешной** задачи по ролям и проверка «промпт против набора инструментов». |
 | `20-task-evals-and-autopsy` | Сделало ли задание работу: свежесть, размер и форма выводов, серии провалов, зависшие очереди — плюс классификатор ошибок, сообщающий о каждом новом падении один раз, и собранный бриф оператора. |
@@ -244,6 +253,15 @@ hermes-agent-ops/
 ├── 15-agent-tool-guardrails/     hooks/, lanes.py, tests/, install.sh
 ├── 16-gepa-skill-tuner/          tuner.py, tests/, examples/
 ├── 17-model-slot-bakeoff/        bakeoff.py, tests/, examples/
+|-- 25-ransomware-monitor/
+|-- 26-querylog-domain-scout/
+|-- 27-ecosystem-map/
+|-- 28-research-scout/
+|-- 29-digest-delivery-health/
+|-- 30-thinking-layer-cost/
+|-- 31-schedule-audit/
+|-- 32-compaction-effect-check/
+|-- 33-routing-outcomes/
 ├── 18-harness-probes/            probes.py, probes_check.sh, examples/, tests/
 ├── 19-cost-governance/           budget_guard.py, cost_per_outcome.py, toolsets_audit.py, examples/, tests/
 ├── 20-task-evals-and-autopsy/    task_evals.py, postmortem.py, briefing.py, examples/, tests/

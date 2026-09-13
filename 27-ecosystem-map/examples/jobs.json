@@ -1,0 +1,45 @@
+{
+  "jobs": [
+    {
+      "id": "abc123def456ghi789jkl",
+      "name": "weekly_system_check",
+      "state": "scheduled",
+      "last_run_at": "2023-10-01T10:00:00Z",
+      "last_status": "ok",
+      "failure_streak": 0,
+      "schedule_display": "weekly",
+      "model": "gpt-4",
+      "deliver": "origin",
+      "origin": {
+        "chat_id": "100000000"
+      },
+      "no_agent": false
+    },
+    {
+      "id": "def456ghi789jkl012mno",
+      "name": "daily_backup",
+      "state": "paused",
+      "last_run_at": "2023-09-28T15:30:00Z",
+      "last_status": "error",
+      "failure_streak": 3,
+      "schedule_display": "daily",
+      "model": "claude-3",
+      "deliver": "-1004465949162",
+      "no_agent": false
+    },
+    {
+      "id": "ghi789jkl012mno345pqr",
+      "name": "monthly_report",
+      "state": "scheduled",
+      "last_run_at": null,
+      "last_status": null,
+      "failure_streak": 0,
+      "schedule_display": "monthly",
+      "model": "gpt-3.5-turbo",
+      "deliver": "local",
+      "no_agent": true,
+      "script": "report_generator.py"
+    }
+  ],
+  "updated_at": "2023-10-02T08:00:00Z"
+}

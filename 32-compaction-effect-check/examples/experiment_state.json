@@ -1,0 +1,12 @@
+{
+ "change_ts": 1726240500,
+ "observe_until": 1726758900,
+ "baseline": {
+  "cost_per_day": 2.45,
+  "compaction_cost_per_day": 0.85,
+  "compaction_calls": 120,
+  "cache_ratio": 3,
+  "cost_total": 7.35
+ },
+ "reported": false
+}

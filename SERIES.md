@@ -26,6 +26,15 @@ autopsies in `03` are the reason most of the other folders exist.
 | 15 | agent-tool-guardrails | **02**'s outside-judgement stance turned on commands and worktrees; guards what **07**-approved prompts actually do; the lane half pairs with Hermes' own worktree isolation |
 | 16 | gepa-skill-tuner | the repair loop after **07**: the linter blocks a bad prompt, the tuner rewrites one against labelled traffic; its task sets are exactly what **15**'s gates and **03**'s incidents produce |
 | 17 | model-slot-bakeoff | the measurement step behind **04**'s model pinning: a slot is worth what its tasks cost per call, and **16**'s optimization runs inherit that choice |
+| 25 | ransomware-monitor | the intake side of **05**: a feed watcher that only speaks when an incident is new |
+| 26 | querylog-domain-scout | what **12**'s topic walls look like from the network side: per-client domain traffic from the DNS log |
+| 27 | ecosystem-map | keeps **05** and **09** honest: the estate map is generated from the job list, not written by hand |
+| 28 | research-scout | the fast twin of the weekly digest: same OAI-PMH corpus, shorter window, gated so quiet weeks stay silent |
+| 29 | digest-delivery-health | the delivery half of **03**'s incidents: a journal that shows which channel stopped speaking |
+| 30 | thinking-layer-cost | pairs with **10**: the dashboard shows the total, this shows the reasoning layer inside it |
+| 31 | schedule-audit | plans the off-peak moves that **19**'s cap then enforces |
+| 32 | compaction-effect-check | **08**'s lifecycle decision, measured against its own before-and-after windows |
+| 33 | routing-outcomes | the evidence behind **17**'s pinning: per-model results on real jobs |
 | 18 | harness-probes | the gate **15**'s lanes and **16**'s tuner need: an edit is admitted only when the probe baseline shows no regression; **20** supplies the runtime twin of the same idea |
 | 19 | cost-governance | the teeth **01** and **10** describe but do not carry — a cap that pauses and resumes — plus the per-outcome number **22** optimizes against |
 | 20 | task-evals-and-autopsy | **05**'s sweep brief fed by evidence: output checks, an error classifier and a compiled brief; **18** checks the harness, this checks the work |

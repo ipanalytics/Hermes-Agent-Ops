@@ -1,0 +1,1 @@
+{"jobs": [{"id": "2f3123db64ce", "name": "morning-releases", "schedule": "daily"}, {"id": "e70f41682aea", "name": "weekday-day-releases", "schedule": "weekdays"}]}

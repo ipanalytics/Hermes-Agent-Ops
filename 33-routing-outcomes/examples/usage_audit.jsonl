@@ -1,0 +1,3 @@
+{"ts": "2024-01-15T10:00:00Z", "model": "gpt-4", "job_id": "test_job_1", "total_tokens": 1500, "error": false, "response_silent": false}
+{"ts": "2024-01-15T10:05:00Z", "model": "claude", "job_id": "test_job_2", "total_tokens": 2100, "error": true, "response_silent": false}
+{"ts": "2024-01-15T10:10:00Z", "model": "llama", "job_id": "test_job_3", "total_tokens": 900, "error": false, "response_silent": true}

@@ -1,0 +1,10 @@
+{
+  "themes": {
+    "harness": "harness|scaffold|tool[- ]use|tool call|function call|\\bskills?\\b|orchestrat\\w+ agents?",
+    "evals": "\\beval\\w*|benchmark|verifier|rubric|reward model|grading|regression suite",
+    "memory": "agent memory|long[- ]term memory|memory card|context engineering|context management"
+  },
+  "window_days": 7,
+  "max_items": 5,
+  "sets": ["cs"]
+}

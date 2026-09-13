@@ -1,0 +1,5 @@
+[
+  {"id": "test_job_1", "name": "Daily Report", "model": "gpt-4", "enabled": true, "last_status": "ok"},
+  {"id": "test_job_2", "name": "Weekly Summary", "model": "claude", "enabled": true, "last_status": "error"},
+  {"id": "test_job_3", "name": "Monthly Analysis", "model": "llama", "enabled": false, "last_status": "ok"}
+]

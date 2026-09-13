@@ -50,6 +50,14 @@ collector-plus-formatter inversion, the shortlist tool, and the measured savings
 collects the before/after numbers in one place. Every module in this release ships tests (40 checks
 across the seven).
 
+## v0.6 — watching the estate
+25 ransomware-monitor, 26 querylog-domain-scout, 27 ecosystem-map, 28 research-scout,
+29 digest-delivery-health, 30 thinking-layer-cost, 31 schedule-audit,
+32 compaction-effect-check, 33 routing-outcomes. Nine modules that watch the work rather
+than do it: feeds and logs read deterministically, gated so a quiet week stays silent,
+a live estate map, delivery health, the reasoning layer's own cost, and the measurements
+behind off-peak moves, compaction policy and model pinning.
+
 ## Next
 - v0.6 — test suites and CI for 01, 02, 07, 09, 10, 14 (the unfinished half of v0.4), plus a CI job
   that runs every module's tests on push.

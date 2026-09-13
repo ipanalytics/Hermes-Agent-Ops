@@ -1,0 +1,5 @@
+{"IP":"192.168.1.100","QH":"example.com.","T":"2023-01-01T10:00:00.123Z","Result":{"IsFiltered":false}}
+{"IP":"192.168.1.101","QH":"test.org.","T":"2023-01-01T10:01:00.456Z","Result":{"IsFiltered":true}}
+{"IP":"192.168.1.102","QH":"another.net.","T":"2023-01-01T10:02:00.789Z","Result":{"IsFiltered":false}}
+{"IP":"192.168.1.100","QH":"subdomain.example.com.","T":"2023-01-01T10:03:00.012Z","Result":{"IsFiltered":false}}
+{"IP":"192.168.1.101","QH":"device.local","T":"2023-01-01T10:04:00.345Z","Result":{"IsFiltered":false}}

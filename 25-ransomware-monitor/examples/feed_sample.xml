@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"><channel><title>Sample leak feed</title>
+<item>
+  <title>lockbit3 :: Example GmbH | leak site</title>
+  <description>&lt;p&gt;Manufacturer in Heilbronn (DE). Claimed 40 GB.&lt;/p&gt;</description>
+  <pubDate>Mon, 08 Sep 2026 10:00:00 GMT</pubDate>
+  <link>https://example.invalid/item/1</link>
+</item>
+<item>
+  <title>akira :: Another AG</title>
+  <description>&lt;p&gt;Retail chain, Zurich, Switzerland.&lt;/p&gt;</description>
+  <pubDate>Mon, 08 Sep 2026 11:30:00 GMT</pubDate>
+  <link>https://example.invalid/item/2</link>
+</item>
+</channel></rss>

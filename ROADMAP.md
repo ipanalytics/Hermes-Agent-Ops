@@ -59,6 +59,6 @@ a live estate map, delivery health, the reasoning layer's own cost, and the meas
 behind off-peak moves, compaction policy and model pinning.
 
 ## Next
-- v0.6 — test suites and CI for 01, 02, 07, 09, 10, 14 (the unfinished half of v0.4), plus a CI job
+- v0.7 — test suites and CI for 01, 02, 07, 09, 10, 14 (the unfinished half of v0.4), plus a CI job
   that runs every module's tests on push.
-- v0.6 — live demo data: anonymized sample usage DB plus the dashboard rendered from it.
+- v0.7 — live demo data: anonymized sample usage DB plus the dashboard rendered from it.

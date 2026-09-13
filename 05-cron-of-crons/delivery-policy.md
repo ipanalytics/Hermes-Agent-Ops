@@ -40,7 +40,7 @@ plus at most one reminder every 30 minutes while it persists.
   reminder is useful ("still down"); re-sending the same alert every cycle is
   not.
 - **Budgets scale with severity.** A wallet guard fires at most a few times a
-  day by design; a supervisor caps itself (e.g. 3 restarts/hour, then escalate
+  day by design; a supervisor caps itself (e.g. 3 retries/hour, then escalate
   to a human). If a job cannot bound its own message count, it is not a
   watchdog, it is a pager.
 - **The human's topic is a fire channel.** If the alert topic accumulates more

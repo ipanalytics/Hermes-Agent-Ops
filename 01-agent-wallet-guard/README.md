@@ -1,12 +1,12 @@
 # 01 — agent-wallet-guard
 
-_Русская версия: [README.ru.md](README.ru.md)_
+_Russian version: [README.ru.md](README.ru.md)_
 
 **Watchdog for LLM API spend: measure the *fact*, find the *culprit session*, alert only when something is wrong.**
 
-## What you get
+## What I get
 
-- `agent_wallet_guard.py` — the production watchdog (this exact logic ran every 30 min for weeks). Empty stdout when healthy; throttled alerts on: low balance (1/12h) and daily burn over threshold (1/4h), each with the top session by cache-read tokens as culprit candidate.
+- `agent_wallet_guard.py` — my production watchdog (this exact logic ran every 30 min for weeks). Empty stdout when healthy; throttled alerts on: low balance (1/12h) and daily burn over threshold (1/4h), each with the top session by cache-read tokens as culprit candidate.
 - `guard_config.example.env` — every knob, commented.
 
 ## The problem

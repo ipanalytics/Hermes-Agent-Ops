@@ -2,14 +2,14 @@
 
 _Русская версия: [README.ru.md](README.ru.md)_
 
-**The code-review bot for prompt hygiene: will your cron prompt survive a fresh session?**
+**The code-review bot for prompt hygiene: will my cron prompt survive a fresh session?**
 
 > A scheduled agent job runs in a NEW session with ZERO chat context. Prompts written against
 > history — "as I said earlier", "the file we discussed", "you know my preferences" — are the
 > quiet killer of cron reliability. They don't crash; they *drift*, hallucinate, or stall asking
 > a user who isn't there.
 
-## What you get here
+## What I get here
 
 - `fresh_prompt_linter.py` — a runnable, deterministic heuristic checker (no LLM involved, costs nothing, safe for CI/gates).
 

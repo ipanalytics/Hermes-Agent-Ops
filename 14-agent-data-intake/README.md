@@ -37,12 +37,12 @@ A device (BLE cuff, phone app, IoT sensor) posts readings to a webhook receiver.
 ## Failure timeline (observed)
 
 ```
-02:00  receiver dies (stuck client / killed with an unrelated restart chain)
-05:08  user measures; device BLE daemon receives the reading (24/7 scan)
-05:08  POST fails (connection refused) → reading spooled, retry every ~17 s
-05:08–15:15  retries fail; nothing restarts the receiver (its cron lifeline is down too)
-15:15  receiver unit starts (new architecture); first retry succeeds → delivered
-15:15  spool flushed, *.delivered renamed; morning reading lands in SQLite intact
+02:00 receiver dies (stuck client / killed with an unrelated restart chain)
+05:08 user measures; device BLE daemon receives the reading (24/7 scan)
+05:08 POST fails (connection refused) → reading spooled, retry every ~17 s
+05:08–15:15 retries fail; nothing restarts the receiver (its cron lifeline is down too)
+15:15 receiver unit starts (new architecture); first retry succeeds → delivered
+15:15 spool flushed, *.delivered renamed; morning reading lands in SQLite intact
 ```
 
 Total loss: **zero**. Latency: 12 h, caused entirely by the missing restart policy — the fix this module ships.
@@ -52,9 +52,9 @@ Total loss: **zero**. Latency: 12 h, caused entirely by the missing restart poli
 ```bash
 # simulate a device: POST one reading through the TLS proxy
 curl -sk -X POST https://intake.example:8899/health/webhook \
-  -H "X-Health-Token: $(cat /path/to/token_file)" \
-  -H "Content-Type: application/json" \
-  -d '{"source":"test","metrics":[{"metric":"heart_rate","value":60}]}'
+ -H "X-Health-Token: $(cat /path/to/token_file)" \
+ -H "Content-Type: application/json" \
+ -d '{"source":"test","metrics":[{"metric":"heart_rate","value":60}]}'
 # → {"status":"ok","stored":1}; then DELETE the row in SQLite.
 ```
 

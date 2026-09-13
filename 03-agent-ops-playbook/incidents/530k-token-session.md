@@ -25,7 +25,7 @@ A long-lived conversation grew past the compaction threshold; the compressor cou
 
 ## Prevention checklist
 - [ ] Aux pinned to the cheap provider
-- [ ] Compaction threshold tuned (not "as high as the model allows")
+- [ ] Compaction threshold tuned (not "as high as the model gives me the right")
 - [ ] Balance guard alerting with session id
 - [ ] Daily session reset policy in place (the giant died overnight anyway)
 

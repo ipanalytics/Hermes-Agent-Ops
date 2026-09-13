@@ -9,7 +9,7 @@ _Русская версия: [README.ru.md](README.ru.md)_
 > slower one. The only way to know is to run the slot's real work through both and look at
 > the bill, the clock, and whether the answer was actually correct.
 
-## What you get
+## What I get
 
 - `bakeoff.py` — runs one task set against N candidate models, grades each answer against a
   hidden test, and writes a JSON report plus a summary table.
@@ -87,7 +87,7 @@ that is why the harness exists rather than a table of list prices.
    `HTTP 404: No allowed providers are available for the selected model` even though the
    catalog lists it and its endpoint status is healthy — the error body names both the model's
    upstreams and the allow-list, and it is the only place that says why the model cannot be
-   called. Pin with `"provider": "<name>"` once you know which upstream you want.
+   called. Pin with `"provider": "<name>"` once I know which upstream I want.
 3. **Tool calls.** For an agent slot, tool-call support is a hard requirement, not a bonus.
    `--with-tools` probes it in a single request.
 

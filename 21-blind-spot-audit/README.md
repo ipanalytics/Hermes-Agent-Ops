@@ -47,7 +47,7 @@ python3 sample_outputs.py --dir ~/.hermes/cron/output --days 7 --count 12 --out 
 
 The sample file and its JSON manifest are boring on purpose. A weekly job reads them with the rubric
 and reports a table plus three lines: the rate, the most expensive error found, and one recommended
-change to the checks or the prompt. That last line is the point of the exercise — the audit exists to
+change to the checks or the prompt. That last line matters most — the audit exists to
 change something, not to score anything.
 
 Redaction covers home paths, absolute system paths, IP addresses, e-mail addresses, credential-shaped

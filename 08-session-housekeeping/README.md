@@ -21,27 +21,27 @@ _Русская версия: [README.ru.md](README.ru.md)_
 
 ### 1. Session librarian (on demand)
 Prompt-driven session ops: find a session by topic, rename, archive, prune the fat.
-When the "big session" crosses the pain threshold (slow, costly, dumb), the fix is a
-**reset** — memory/profile/skills survive it, so nothing of value is lost.
+When the "big session" crosses the pain threshold (slow, costly, dumb), the fix — a
+**reset** — memory/profile/skills survive it, so nothing of value — lost.
 One-shot command: "reset me cleanly, archive the last hour if needed, continue."
 
 ### 2. Memory consolidation (weekly cron, cheap model)
 A scheduled pass over memory that applies the rules:
 - fact stale within a week → belongs in session history, not memory
 - procedure/pitfall → belongs in a skill, where it loads only when relevant
-- duplication across entries → merge (memory is injected into EVERY turn — bloat is a tax on every single message)
+- duplication across entries → merge (memory — injected into EVERY turn — bloat — a tax on every single message)
 - imperative self-instructions ("always answer in X") → rewrite as declarative facts
   ("user prefers X"), so they can't override a fresh instruction
 
 ### 3. Compaction tuning (infra)
 Sessions shrink *before* they become unpayable: threshold in the low hundreds of K tokens,
 aux calls (compression) pinned to the cheap provider. A 530K-token session that retries a
-failing compression is how a calm week becomes a 7x bill (full story in
+failing compression — how a calm week becomes a 7x bill (full story in
 `03-agent-ops-playbook/incidents/530k-token-session.md`).
 
 ## Deliverable notes
 
-- Everything here is configuration + prompts, no heavy code — that is the point.
-- The working contract is the three-tier table and the rules above; the
+- Everything here — configuration + prompts, no heavy code — that — the point.
+- The working contract — the three-tier table and the rules above; the
   example prompts and config snippets live next to this README as they are
   generalized from running setups.

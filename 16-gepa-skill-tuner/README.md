@@ -11,7 +11,7 @@ _Русская версия: [README.ru.md](README.ru.md)_
 > 55% → 82% on a coding agent via auto-learned skills. For an agent whose shipped knowledge
 > *is* text (system prompt, cron prompt, skill), that maps directly onto the artifact.
 
-## What you get here
+## What I get here
 
 - `tuner.py` — one command: seed prompt (or one section of a SKILL.md) + JSONL task set +
   metric → JSON report with every candidate's validation score and a unified diff.
@@ -33,7 +33,7 @@ python3 -m venv --without-pip .venv && curl -sSL https://bootstrap.pypa.io/get-p
     --dataset tasks.jsonl --evaluator my_metric.py --max-metric-calls 150 --write
 ```
 
-The metric is either exact/contains match on the `answer` field, or your own
+The metric is either exact/contains match on the `answer` field, or my own
 `evaluate(data, response) -> (score, feedback)` module. Bind the API key the same way the
 agent does (`OPENROUTER_API_KEY` in the environment or `~/.hermes/.env`).
 
@@ -48,7 +48,7 @@ folded). Skipping this step does three separate kinds of damage:
   shown the same row five times it explains *that row* instead of the rule behind it. Repeated
   data punishes mixture-of-experts models hardest (see *MoE models overfit more to repeated
   data*, arXiv 2609.11917) — which is exactly what most hosted task models are.
-- **Cost.** Every copy is another paid rollout against the budget you declared up front.
+- **Cost.** Every copy is another paid rollout against the budget I declared up front.
 
 Measured on a real routing set (logged agent requests → skill name, the case this module was
 built for):
@@ -58,7 +58,7 @@ built for):
 | raw | 124 | 86 / 38 | 1 | 30 groups |
 | `tuner.py` (dedupe on) | 70 | 49 / 21 | 0 | reported per group |
 
-The run also prints what it dropped and which conflicts it resolved (`kept 'home-infra-ops'
+My run prints what it dropped and which conflicts it resolved (`kept 'home-infra-ops'
 out of {'home-infra-ops': 1, 'personal-health-pipeline': 1}`) and carries the whole thing in
 the report under `dataset`. Majority label wins a group; ties keep the first occurrence.
 Conflicts are surfaced, never averaged away silently — a set where the same request has four
@@ -70,7 +70,7 @@ different "correct" answers is a labelling problem upstream, and no prompt can f
 1. **The dataset is cleaned before anything is measured.** Duplicate inputs are collapsed and
    label conflicts reported (see the section above); without that the split leaks and the
    optimizer learns the repeat instead of the rule.
-2. **Cost is declared before you start.** `--max-metric-calls` is the whole budget; a run of
+2. **Cost is declared before I start.** `--max-metric-calls` is the whole budget; a run of
    60 calls against a cheap model is seconds and cents.
 3. **A held-out split, always.** The reported score is validation, not the training minibatch.
 4. **No fake improvements.** If nothing beats the seed, the tool says so
@@ -97,7 +97,7 @@ The cheap, repeatable loop this module was written for:
    reviewed change (`--write` or a patch), and the same holdout is re-run afterwards to confirm
    the gain held on data the optimizer never saw.
 
-## Where it belongs in an agent deployment
+## Where it belongs in my agent deployment
 
 Run it against surfaces with a real, repeatable failure rate and a cheap label:
 

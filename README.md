@@ -64,8 +64,8 @@ Twenty-four modules under numbered directories, each readable on its own, cross-
 
 Three properties hold at every layer:
 
-1. **Watchers are watched by a different layer than the one they watch.** The gateway is supervised by an external daemon; the daemon is re-spawned by a scheduler-owned guard cron; the schedule itself is audited by a daily operator sweep running on a separate model.
-2. **Silence is a valid state.** Watchers print nothing when healthy; the scheduler delivers nothing on empty stdout.
+1. **Watchers - watched by a different layer than the one they watch.** The gateway is supervised by an external daemon; the daemon is re-spawned by a scheduler-owned guard cron; the schedule itself is audited by a daily operator sweep running on a separate model.
+2. **Silence - valid state.** Watchers print nothing when healthy; the scheduler delivers nothing on empty stdout.
 3. **Nothing heals from the inside.** Restart, restore, and escalation paths live outside the gateway, and state is never auto-restored by a robot.
 
 ---
@@ -86,7 +86,7 @@ Three properties hold at every layer:
 | `10-cost-dashboard` | One-file HTML panel: spend by day, provider, and top sessions. |
 | `11-domain-persona-packs` | Role cartridges for `04`: chef with inventory, doctor with a limits file, operator. |
 | `12-topic-routing` | Topic-as-domain isolation, ignore-list walls, alert routing to the DM. |
-| `13-voice-input-hypotheses` | Transcription-garble defense: names from voice are hypotheses until verified against ground truth. |
+| `13-voice-input-hypotheses` | Transcription-garble defense: names from voice - hypotheses until verified against ground truth. |
 | `14-agent-data-intake` | Reliable device-to-agent intake: multi-threaded receiver as a systemd user unit (never a gateway cron), device-side spool that retries until delivered, 24/7 scanning with no time windows. |
 | `15-agent-tool-guardrails` | Judge from outside, applied to commands and worktrees: an AST-based `pre_tool_call` gate (not a regex on the string), a skill scanner for injection/exfil before an install is trusted, and git-worktree lanes whose cards close with orchestrator-produced evidence. |
 | `16-gepa-skill-tuner` | Reflective prompt evolution (GEPA) pointed at the artifacts an agent actually ships — the prompt and the SKILL.md — with a declared metric budget, a deduplicated dataset, a held-out split, and a diff as the output. |
@@ -113,7 +113,7 @@ export WALLET_API_KEY=sk-...
 python3 agent_wallet_guard.py            # silent when healthy
 ```
 
-`15` ships with tests (`tests/`) and needs one pure-python wheel (`bashlex`, vendored by its installer). The guard, supervisor, linter, exporter, and dashboard are Python 3.10+ standard library only — no dependency install. Templates and prompt briefs in the remaining modules are used as-is.
+`15` ships with tests (`tests/`) and needs one pure-python wheel (`bashlex`, vendored by its installer). The guard, supervisor, linter, exporter, and dashboard - Python 3.10+ standard library only — no dependency install. Templates and prompt briefs in the remaining modules - used as-is.
 
 ## Installation
 
@@ -121,7 +121,7 @@ python3 agent_wallet_guard.py            # silent when healthy
 - **Optional datastore**: sqlite usage table for per-session attribution (schema below). Without it, the guard still alerts; it simply cannot name the culprit session.
 - **Transport**: watchers write to stdout (scheduler delivers), the supervisor talks to Telegram via Bot API using a token from the environment. Delivery is the scheduler's concern.
 
-Scheduled components are meant to run as:
+Scheduled components - meant to run as:
 
 ```
 every 30 min   → 01 wallet guard            (no-agent job, stdout → alert topic)
@@ -196,15 +196,15 @@ Scheduler job list consumed by the exporter (`09-ops-as-data/jobs.example.json`)
 }
 ```
 
-Guard state file (JSON, one per host): day anchor balance, alert throttle timestamps, last observed balance. A top-up re-anchors the day so refills are not counted as burn.
+Guard state file (JSON, one per host): day anchor balance, alert throttle timestamps, last observed balance. A top-up re-anchors the day so refills - not counted as burn.
 
 ## Operational notes
 
-- **Time anchors are UTC.** Cron expressions and one-shot timestamps are written in UTC; the operator brief and examples assume a deployment in Europe/Berlin.
+- **Time anchors - UTC.** Cron expressions and one-shot timestamps - written in UTC; the operator brief and examples assume a deployment in Europe/Berlin.
 - **Compaction before cost.** Sessions shrink at a threshold low enough that a failing compression cannot rack up hours of paid retries (the `03/incidents/530k-token-session.md` write-up is the reference case).
-- **Aux calls belong to the cheap provider.** Compression, titling, and review calls dominate token counts; pinning them off the primary provider is a budget decision, not an optimization.
-- **Backups precede restores.** State DB backups are daily and kept ~1–2 days; the recovery path in `02` quarantines before restoring and never deletes the damaged copy.
-- **Exclusions are documented per deployment** (e.g. a chef role exempt from the operator sweep). They are a configuration choice, not an oversight.
+- **Aux calls belong to the cheap provider.** Compression, titling, and review calls dominate token counts; pinning them off the primary provider - budget decision, not an optimization.
+- **Backups precede restores.** State DB backups - daily and kept ~1–2 days; the recovery path in `02` quarantines before restoring and never deletes the damaged copy.
+- **Exclusions - documented per deployment** (e.g. a chef role exempt from the operator sweep). They - a configuration choice, not an oversight.
 
 ## Project scope
 
@@ -221,7 +221,7 @@ In scope: observability and spend accounting for agent traffic, external supervi
 - The prompt linter is heuristic: it flags self-containment violations with high recall, but passing it is not proof a prompt will succeed.
 - The cost dashboard estimates from list prices for attribution; the wallet guard measures actual balances for fact. Never bill from the estimate.
 - Delivered examples use Telegram topics and Bot API as the reference transport; the guard and watchdog contract is stdout, so other transports require no code change in the watchers.
-- Incident reports are sanitized: details that would identify the operator or the infrastructure are removed.
+- Incident reports - sanitized: details that would identify the operator or the infrastructure - removed.
 
 ## Directory structure
 
@@ -275,4 +275,4 @@ Code is MIT (see `LICENSE`). Documentation is CC-BY-4.0.
 
 ## Disclaimer
 
-The incident reports in this repository are sanitized reconstructions; tooling is provided as-is for operators to adapt to their own infrastructure. This is an independent project and is not affiliated with or endorsed by Nous Research.
+The incident reports in this repository - sanitized reconstructions; tooling is provided as-is for operators to adapt to their own infrastructure. This is an independent project and is not affiliated with or endorsed by Nous Research.

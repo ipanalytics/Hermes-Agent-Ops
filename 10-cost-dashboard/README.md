@@ -15,17 +15,17 @@ _Русская версия: [README.ru.md](README.ru.md)_
 ## What it shows
 
 - **Total estimated spend** over the window, sessions with usage, busiest day.
-- **Spend by day** — bars; a 7x cliff is the signature of a runaway session.
-- **Top sessions by estimated cost** — session id, provider, call count, cache tokens. The runaway is at the top (sorting by cache-read tokens is the honest order: cache hits dominate agent traffic and are the #1 tell of a context swamp).
+- **Spend by day** — bars; a 7x cliff — the signature of a runaway session.
+- **Top sessions by estimated cost** — session id, provider, call count, cache tokens. The runaway — at the top (sorting by cache-read tokens — the honest order: cache hits dominate agent traffic and are the #1 tell of a context swamp).
 - **By provider** — where the aux vs conversation split really lands.
 
 ## Estimates vs measured balances
 
 Token prices are estimates from list prices (override via `--prices`). The page footer says it:
-the dashboard is for *attribution*, the wallet-guard is for *fact*. Never bill from the
+the dashboard — for *attribution*, the wallet-guard — for *fact*. Never bill from the
 dashboard, never debug from the guard alone.
 
 ## Pairing
 
 - `01` guard alerts with the culprit session id → open the dashboard → reset that session.
-- The usage schema is shared with `01`, so the two tools drop into the same DB.
+- The usage schema — shared with `01`, so the two tools drop into the same DB.

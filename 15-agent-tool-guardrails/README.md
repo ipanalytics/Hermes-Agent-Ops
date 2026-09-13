@@ -33,8 +33,8 @@ protected. Two tiers: **block** (destructive, reported back to the agent as a re
 **flag** (logged only — `curl … | bash` installers and `pip install` are normal work).
 
 ```bash
-python3 hooks/bash_guard.py < payload.json     # hook contract: stdin JSON -> stdout block JSON
-python3 tests/test_bash_guard.py               # 22 cases, includes the quote/bidi evasions
+python3 hooks/bash_guard.py < payload.json # hook contract: stdin JSON -> stdout block JSON
+python3 tests/test_bash_guard.py # 22 cases, includes the quote/bidi evasions
 ```
 
 Register it (never hand-edit `config.yaml`):
@@ -42,7 +42,7 @@ Register it (never hand-edit `config.yaml`):
 ```bash
 hermes config set hooks_auto_accept true
 hermes config set hooks '{"pre_tool_call":[{"matcher":"terminal","command":"/usr/bin/python3 '"$PWD"'/hooks/bash_guard.py","timeout":10,"fail_closed":true}]}'
-hermes gateway restart        # hooks bind at process start; new CLI runs pick them up at once
+hermes gateway restart # hooks bind at process start; new CLI runs pick them up at once
 ```
 
 **Verify end-to-end, not only in unit tests.** Put a canary regex in `policy.json`
@@ -58,9 +58,9 @@ bidi characters that never render in a diff, credential-store reads, drop-box we
 `curl | bash`, decoders piped into a shell.
 
 ```bash
-python3 hooks/skill_scan.py path/to/skill          # human report, exit 2 on any HIGH
-python3 hooks/skill_scan.py --all-installed        # audit the whole library
-python3 hooks/skill_scan.py --hook                 # pre_tool_call mode: block the install
+python3 hooks/skill_scan.py path/to/skill # human report, exit 2 on any HIGH
+python3 hooks/skill_scan.py --all-installed # audit the whole library
+python3 hooks/skill_scan.py --hook # pre_tool_call mode: block the install
 ```
 
 Context beats any single pattern. A lone mention of `~/.ssh/id_...` appears in every SSH
@@ -74,11 +74,11 @@ false positives on your own docs; review them instead of forking the rules per f
 ## Lanes: parallel writers, one acceptance gate
 
 ```bash
-lanes.py new    REPO lane-a lane-b        # worktrees under REPO/.worktrees/, branches lane/<name>
-lanes.py status REPO --json               # commits ahead, dirty files, diff stat per lane
-lanes.py gate   REPO [lanes...] --cmd "python3 -m pytest -q"
-lanes.py merge  REPO --into integration   # serial merge, aborts on conflict
-lanes.py report REPO                      # evidence JSON: heads, diffs, gate results
+lanes.py new REPO lane-a lane-b # worktrees under REPO/.worktrees/, branches lane/<name>
+lanes.py status REPO --json # commits ahead, dirty files, diff stat per lane
+lanes.py gate REPO [lanes...] --cmd "python3 -m pytest -q"
+lanes.py merge REPO --into integration # serial merge, aborts on conflict
+lanes.py report REPO # evidence JSON: heads, diffs, gate results
 ```
 
 The orchestrator re-runs the verification inside each lane and closes the card with a commit
@@ -88,11 +88,11 @@ lane is not merged; a conflict aborts the merge and leaves the lane isolated.
 Three details that only appear when two writers run at once, all learned by breaking them:
 
 - Inside a lane, `HEAD` is the **lane's** tip — the baseline must come from the main
-  checkout, or every lane reports zero commits.
+ checkout, or every lane reports zero commits.
 - Lane hygiene belongs in `.git/info/exclude`, not `.gitignore`; otherwise `new` leaves an
-  uncommitted file and every later "is the tree clean?" check fails.
+ uncommitted file and every later "is the tree clean?" check fails.
 - Parse status with `git diff --name-only` / `git ls-files --others`. Slicing porcelain
-  columns silently truncates names (`app.py` → `pp.py`).
+ columns silently truncates names (`app.py` → `pp.py`).
 
 ## Related modules
 

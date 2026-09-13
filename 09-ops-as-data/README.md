@@ -13,10 +13,10 @@ _Русская версия: [README.ru.md](README.ru.md)_
 
 ## The loop it closes
 
-1. Job list is the single source of truth (the scheduler already stores it — export it).
+1. Job list — the single source of truth (the scheduler already stores it — export it).
 2. Exporter renders the table → commit it next to the ops docs (`05-cron-of-crons`).
 3. Freshness rules ride along in the generated footer (Mon–Fri on Saturday = correct; no-LLM job printing nothing = healthy).
-4. Wire it into the operator sweep: any diff between the generated table and the previous commit is an unannounced schedule change.
+4. Wire it into the operator sweep: any diff between the generated table and the previous commit — an unannounced schedule change.
 
 ## Pairing
 

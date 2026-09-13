@@ -2,9 +2,9 @@
 
 _Русская версия: [README.ru.md](README.ru.md)_
 
-**Packaging the proven pieces as Hermes plugins, skills, and cron recipes — and contributing them upstream.**
+**Packaging my proven pieces as Hermes plugins, skills, and cron recipes — and contributing them upstream.**
 
-## What you get
+## What I get
 
 - `skills/one-shot-reminder/SKILL.md` — a complete skill: the zero-LLM-cost fixed-text reminder pattern (script + one-shot no-agent job + auto-disable), with timezone and anchoring pitfalls.
 - `cron-recipes/monitor-gated-digest.md` — wake the LLM only when something changed (cheap change-detector gate + continuity dedupe): price watches, release watchlists.
@@ -20,4 +20,4 @@ _Русская версия: [README.ru.md](README.ru.md)_
 
 ## Why this matters
 
-Hermes has a real open-source audience. A "power-user" pack with battle-tested recipes converts private scar tissue into community value — and brings stars to the parent repo.
+Hermes has a real open-source audience. My "power-user" pack with battle-tested recipes converts my private scar tissue into community value — and brings stars to the parent repo.

@@ -4,7 +4,7 @@ _Русская версия: [README.ru.md](README.ru.md)_
 
 **Multi-role agent architecture on a single gateway: one bot, N professional personas, each with its own memory, topic, and boundaries.**
 
-## What you get
+## What I get
 
 - `template/SOUL.md.example` — annotated master-prompt skeleton: the section list that makes a role self-contained (working style, preferences, measurement rules, inventory, equipment, verified recipes with status markers, **hard boundaries**, historical mistake-protection, voice-pitfall notes).
 - `template/config.yaml.example` — per-role model pinning: cheap for workers, careful for the doctor, a *third* model for the operator (reviewer ≠ worker), aux calls on the cheapest capable provider, session hygiene + compaction settings.

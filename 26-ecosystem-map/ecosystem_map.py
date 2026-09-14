@@ -20,15 +20,15 @@ MAP = H("~/.hermes/data/ecosystem_map.md")
 STATE = H("~/.hermes/data/ecosystem_map_state.json")
 PROFILES_DIR = H("~/.hermes/profiles")
 
-# Friendly names for group topics (chat $GROUP_CHAT). Topic number -> name.
+# Friendly names for the topics of one group chat. Topic number -> name.
 TOPIC_NAMES = {
-    "16": "Releases/media", "17": "Train", "18": "Peptides", "19": "??",
-    "20": "Oura", "30": "System", "35": "Kitchen", "82": "HQ",
-    "105": "AI models", "239": "Genetics", "713": "Government",
-    "762": "Ransom", "763": "News?", "1078": "Mail",
+    "16": "Media", "17": "Travel", "18": "Health", "19": "Other",
+    "20": "Wearables", "30": "System", "35": "Kitchen", "82": "HQ",
+    "105": "Models", "239": "Genetics", "713": "Authorities",
+    "762": "Security", "763": "News", "1078": "Mail",
 }
-GROUP_CHAT = os.environ.get("HERMES_GROUP_CHAT", "-1004465949162")   # group with topics
-MYNET_CHAT = os.environ.get("HERMES_MYNET_CHAT", "-1003938881229")
+GROUP_CHAT = os.environ.get("HERMES_GROUP_CHAT", "")       # group with topics
+SECOND_CHAT = os.environ.get("HERMES_SECOND_CHAT", "")     # a second group, if any
 
 
 def deliver_label(job):
@@ -43,9 +43,9 @@ def deliver_label(job):
         thr = o.get("thread_id")
         chat = o.get("chat_id", "?")
         if chat == GROUP_CHAT:
-            return f"t.{thr} '{TOPIC_NAMES.get(str(thr), '?')}'" if thr else "group Bots"
-        if chat == MYNET_CHAT:
-            return "myNET"
+            return f"t.{thr} '{TOPIC_NAMES.get(str(thr), '?')}'" if thr else "group with topics"
+        if chat == SECOND_CHAT:
+            return "second group"
         return f"chat {chat}"
     m = re.match(r"^(?:telegram:)?([^:]+)(?::(\d+))?$", d)
     if not m:
@@ -54,9 +54,9 @@ def deliver_label(job):
     if chat == os.environ.get("HERMES_OPERATOR_CHAT", ""):
         return "📩 direct"
     if chat == GROUP_CHAT:
-        return f"t.{thr} '{TOPIC_NAMES.get(thr, '?')}'" if thr else "group Bots"
-    if chat == MYNET_CHAT:
-        return "myNET"
+        return f"t.{thr} '{TOPIC_NAMES.get(thr, '?')}'" if thr else "group with topics"
+    if chat == SECOND_CHAT:
+        return "second group"
     return f"chat {chat}" + (f":{thr}" if thr else "")
 
 

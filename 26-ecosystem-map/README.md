@@ -35,7 +35,7 @@ The script automatically reads from the standard Hermes locations and creates:
 
 Set environment variables for custom chat IDs:
 - HERMES_GROUP_CHAT - Group chat ID with topics
-- HERMES_MYNET_CHAT - MyNET chat ID
+- HERMES_SECOND_CHAT - second group chat ID
 - HERMES_OPERATOR_CHAT - Operator chat ID
 
 ## Outputs

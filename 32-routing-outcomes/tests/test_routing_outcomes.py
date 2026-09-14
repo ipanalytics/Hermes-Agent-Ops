@@ -1,5 +1,6 @@
 import unittest
 import json
+import shutil
 import tempfile
 import os
 from datetime import datetime, timedelta, timezone
@@ -24,7 +25,8 @@ class TestRoutingOutcomes(unittest.TestCase):
         
     def tearDown(self):
         # Clean up temp files
-        del os.environ["AGENT_HOME"]
+        os.environ.pop("AGENT_HOME", None)
+        shutil.rmtree(self.temp_dir, ignore_errors=True)
         
     def test_load_jobs_with_list(self):
         """Test loading jobs when data is a list"""

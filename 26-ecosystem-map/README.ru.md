@@ -35,7 +35,7 @@ python3 ecosystem_map.py
 
 Установите переменные окружения для пользовательских ID чатов:
 - HERMES_GROUP_CHAT - ID группового чата с темами
-- HERMES_MYNET_CHAT - ID чата MyNET
+- HERMES_SECOND_CHAT - ID второго группового чата
 - HERMES_OPERATOR_CHAT - ID чата оператора
 
 ## Выводы

@@ -1,11 +1,12 @@
 import unittest
 import json
+import shutil
 import tempfile
 import os
 from pathlib import Path
 from unittest.mock import patch, mock_open
 
-# Тестируем модуль schedule_audit.py
+# Tests for schedule_audit.py
 import sys
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
@@ -15,12 +16,12 @@ from schedule_audit import main
 class TestScheduleAudit(unittest.TestCase):
 
     def setUp(self):
-        # Создаем временные файлы для тестирования
+        # Temporary files for the test run
         self.temp_dir = tempfile.mkdtemp()
         self.jobs_file = Path(self.temp_dir) / "jobs.json"
         self.audit_file = Path(self.temp_dir) / "usage_audit.jsonl"
         
-        # Пример данных для jobs.json
+        # Sample data for jobs.json
         self.sample_jobs = [
             {
                 "id": "job1",
@@ -53,7 +54,7 @@ class TestScheduleAudit(unittest.TestCase):
         ]
 
     def test_main_without_apply(self):
-        """Тест основной функции без применения изменений"""
+        """Main runs without applying changes"""
         # Записываем тестовые данные
         with open(self.jobs_file, 'w') as f:
             json.dump(self.sample_jobs, f)
@@ -75,7 +76,7 @@ class TestScheduleAudit(unittest.TestCase):
             self.assertEqual(result, 0)
 
     def test_heavy_job_identification(self):
-        """Тест идентификации тяжелых задач"""
+        """Heavy jobs are identified"""
         # Создаем задачу с высоким потреблением токенов
         high_usage_jobs = [
             {
@@ -106,7 +107,7 @@ class TestScheduleAudit(unittest.TestCase):
             self.assertEqual(result, 0)
 
     def test_flexible_task_detection(self):
-        """Тест определения гибких задач для переноса"""
+        """Flexible jobs are picked for off-peak"""
         # Задача, подходящая для переноса (гибкая, тяжелая, не критичная ко времени)
         flexible_jobs = [
             {
@@ -133,6 +134,9 @@ class TestScheduleAudit(unittest.TestCase):
              patch('sys.argv', ['schedule_audit.py']):
             result = main()
             self.assertEqual(result, 0)
+
+    def tearDown(self):
+        shutil.rmtree(self.temp_dir, ignore_errors=True)
 
 
 if __name__ == '__main__':

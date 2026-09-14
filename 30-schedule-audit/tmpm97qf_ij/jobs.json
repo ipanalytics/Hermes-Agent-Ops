@@ -1,1 +1,0 @@
-[{"id": "flexible_job", "name": "weekly research audit", "schedule": "0 14 * * *", "command": "echo 'flexible task'"}]

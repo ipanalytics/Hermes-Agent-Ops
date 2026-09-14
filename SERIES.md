@@ -33,14 +33,14 @@ autopsies in `03` are the reason most of the other folders exist.
 | 22 | | difficulty-router | **17**'s slot measurement applied continuously to every scheduled job, with a refusal rule |
 | 23 | | research-intake | why **16** and **21** change at all: equal-window corpus counting and a journal that keeps adoptions and rejections with reasons |
 | 24 | | llm-to-script | the cost lever behind **19**'s budget: the same artifacts produced without a model in the loop, with the shortlist tool that finds the next candidate |
-| 26 | | querylog-domain-scout | → what **15** looks like on the wire: per-device domains from AdGuard logs |
-| 27 | | ecosystem-map | → the picture **09** describes, rebuilt live on every run |
-| 28 | | research-scout | → feeds **23** — arXiv OAI-PMH with a change gate and a stable fingerprint |
-| 29 | | digest-delivery-health | → watches **05/10** — silence, failures and drift across digests |
-| 30 | | thinking-layer-cost | → the reasoning half of **19** — spend per day against a cap |
-| 31 | | schedule-audit | → when the jobs from **05** fire, and what belongs in the night |
-| 32 | | compaction-effect-check | → before/after numbers for a context policy change |
-| 33 | | routing-outcomes | → closes the loop for **22** — which tier actually succeeded |
+| 25 | | querylog-domain-scout | → what **15** looks like on the wire: per-device domains from AdGuard logs |
+| 26 | | ecosystem-map | → the picture **09** describes, rebuilt live on every run |
+| 27 | | research-scout | → feeds **23** — arXiv OAI-PMH with a change gate and a stable fingerprint |
+| 28 | | digest-delivery-health | → watches **05/10** — silence, failures and drift across digests |
+| 29 | | thinking-layer-cost | → the reasoning half of **19** — spend per day against a cap |
+| 30 | | schedule-audit | → when the jobs from **05** fire, and what belongs in the night |
+| 31 | | compaction-effect-check | → before/after numbers for a context policy change |
+| 32 | | routing-outcomes | → closes the loop for **22** — which tier actually succeeded |
 
 ## Reading order
 

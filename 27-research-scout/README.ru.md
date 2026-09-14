@@ -1,4 +1,4 @@
-# 28 — research-scout
+# 27 — research-scout
 
 _English version: [README.md](README.md)_
 

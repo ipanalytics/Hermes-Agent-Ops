@@ -1,4 +1,4 @@
-# 30 — thinking-layer-cost
+# 29 — thinking-layer-cost
 
 _English version: [README.md](README.md)_
 

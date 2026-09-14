@@ -1,4 +1,4 @@
-# 31 — Аудит расписаний
+# 30 — Аудит расписаний
 
 _English version: [README.md](README.md)_
 

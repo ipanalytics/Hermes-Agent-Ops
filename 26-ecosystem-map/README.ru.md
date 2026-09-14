@@ -1,4 +1,4 @@
-# 27 — Карта экосистемы
+# 26 — Карта экосистемы
 
 _English version: [README.md](README.md)_
 

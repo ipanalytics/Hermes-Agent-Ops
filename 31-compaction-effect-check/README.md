@@ -1,4 +1,4 @@
-# 32 — Compaction Effect Check
+# 31 — Compaction Effect Check
 
 _Russian version: [README.ru.md](README.ru.md)_
 

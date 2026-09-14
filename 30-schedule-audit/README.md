@@ -1,4 +1,4 @@
-# 31 — Schedule Audit
+# 30 — Schedule Audit
 
 _Russian version: [README.ru.md](README.ru.md)_
 

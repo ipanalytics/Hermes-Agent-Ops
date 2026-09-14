@@ -51,8 +51,8 @@ collects the before/after numbers in one place. Every module in this release shi
 across the seven).
 
 ## v0.6 — watching the estate
-26 querylog-domain-scout, 27 ecosystem-map, 28 research-scout, 29 digest-delivery-health,
-30 thinking-layer-cost, 31 schedule-audit, 32 compaction-effect-check, 33 routing-outcomes.
+25 querylog-domain-scout, 26 ecosystem-map, 27 research-scout, 28 digest-delivery-health,
+29 thinking-layer-cost, 30 schedule-audit, 31 compaction-effect-check, 32 routing-outcomes.
 Eight modules that watch the work rather than do it: feeds and logs read deterministically,
 gated so a quiet week stays silent, a live estate map, delivery health, the reasoning layer's
 own cost, and the measurements behind off-peak moves, compaction policy and model pinning.

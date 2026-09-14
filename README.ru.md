@@ -98,14 +98,14 @@ _English version: [README.md](README.md)_
 | `22-difficulty-router` | Маршрутизирует задания по измеренной сложности на уровень модели и отказывается от перепина, удорожающего механическую работу за токен. |
 | `23-research-intake` | Выкачка корпуса работ по OAI-PMH, локальный подсчёт терминов в равных окнах и схема журнала — первый шаг, метрика, дата отсечения, причина отказа, — превращающая чтение во внедрённые изменения. |
 | `24-llm-to-script` | Инверсия, убирающая самую большую статью расхода: детерминированный сборщик плюс короткий промпт оформителя, инструмент поиска следующего кандидата и измеренные числа до/после. |
-| `26-querylog-domain-scout` | Сводит журнал запросов AdGuard по клиентам: видно, какое устройство к каким доменам обращается и что появилось впервые. |
-| `27-ecosystem-map` | Собирает живую карту агентского хозяйства из списка заданий и профилей, чтобы документация не расходилась с реальностью. |
-| `28-research-scout` | Выкачивает arXiv по OAI-PMH, оценивает работы по темам и приёму, пишет бриф для модели и стабильный отпечаток, из-за которого пустые недели проходят молча. |
-| `29-digest-delivery-health` | Ведёт журнал доставок дайджестов (отправлено, тишина, сбой) и показывает каналы, которые перестали работать. |
-| `30-thinking-layer-cost` | Показывает, сколько стоит думающий слой за сутки относительно потолка, чтобы дорогая часть оставалась на виду. |
-| `31-schedule-audit` | Разбирает расписание: что стоит увести в ночь и что реально стоит денег. |
-| `32-compaction-effect-check` | Сравнивает смену политики сжатия контекста с её же окнами до и после, вместо предположения, что стало лучше. |
-| `33-routing-outcomes` | Считает, как каждая модель справляется с настоящими заданиями расписания, — именно это решает перепин. |
+| `25-querylog-domain-scout` | Сводит журнал запросов AdGuard по клиентам: видно, какое устройство к каким доменам обращается и что появилось впервые. |
+| `26-ecosystem-map` | Собирает живую карту агентского хозяйства из списка заданий и профилей, чтобы документация не расходилась с реальностью. |
+| `27-research-scout` | Выкачивает arXiv по OAI-PMH, оценивает работы по темам и приёму, пишет бриф для модели и стабильный отпечаток, из-за которого пустые недели проходят молча. |
+| `28-digest-delivery-health` | Ведёт журнал доставок дайджестов (отправлено, тишина, сбой) и показывает каналы, которые перестали работать. |
+| `29-thinking-layer-cost` | Показывает, сколько стоит думающий слой за сутки относительно потолка, чтобы дорогая часть оставалась на виду. |
+| `30-schedule-audit` | Разбирает расписание: что стоит увести в ночь и что реально стоит денег. |
+| `31-compaction-effect-check` | Сравнивает смену политики сжатия контекста с её же окнами до и после, вместо предположения, что стало лучше. |
+| `32-routing-outcomes` | Считает, как каждая модель справляется с настоящими заданиями расписания, — именно это решает перепин. |
 
 ## Быстрый старт
 
@@ -259,14 +259,14 @@ hermes-agent-ops/
 ├── 22-difficulty-router/         difficulty_router.py, examples/, tests/
 ├── 23-research-intake/           oai_harvest.py, direction_digest.py, backlog.md, examples/, tests/
 ├── 24-llm-to-script/             collector.py, token_audit.py, examples/, tests/
-├── 26-querylog-domain-scout/      ag_domain_scout.py, examples/, tests/
-├── 27-ecosystem-map/              ecosystem_map.py, examples/, tests/
-├── 28-research-scout/             research_scout.py, examples/, tests/
-├── 29-digest-delivery-health/     digest_health.py, examples/, tests/
-├── 30-thinking-layer-cost/        thinking_layer_cost.py, examples/, tests/
-├── 31-schedule-audit/             schedule_audit.py, examples/, tests/
-├── 32-compaction-effect-check/    compaction_effect_check.py, examples/, tests/
-├── 33-routing-outcomes/           routing_outcomes.py, examples/, tests/
+├── 25-querylog-domain-scout/      ag_domain_scout.py, examples/, tests/
+├── 26-ecosystem-map/              ecosystem_map.py, examples/, tests/
+├── 27-research-scout/             research_scout.py, examples/, tests/
+├── 28-digest-delivery-health/     digest_health.py, examples/, tests/
+├── 29-thinking-layer-cost/        thinking_layer_cost.py, examples/, tests/
+├── 30-schedule-audit/             schedule_audit.py, examples/, tests/
+├── 31-compaction-effect-check/    compaction_effect_check.py, examples/, tests/
+├── 32-routing-outcomes/           routing_outcomes.py, examples/, tests/
 ├── BENCHMARKS.md                  before/after numbers from the deployment
 ├── SERIES.md                     how the modules extend each other
 ├── ROADMAP.md

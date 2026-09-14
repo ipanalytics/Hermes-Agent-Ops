@@ -1,4 +1,4 @@
-# 26 — Querylog Domain Scout
+# 25 — Querylog Domain Scout
 
 _Russian version: [README.ru.md](README.ru.md)_
 

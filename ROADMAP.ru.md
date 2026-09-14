@@ -42,8 +42,8 @@ research-intake: выкачка по OAI-PMH, подсчёт терминов п
 модуль этого выпуска поставляется с тестами (40 проверок на семь модулей).
 
 ## v0.6 — наблюдение за хозяйством
-25 querylog-domain-scout, 26 ecosystem-map, 27 research-scout, 28 digest-delivery-health,
-29 thinking-layer-cost, 30 schedule-audit, 31 compaction-effect-check, 32 routing-outcomes.
+26 querylog-domain-scout, 27 ecosystem-map, 28 research-scout, 29 digest-delivery-health,
+30 thinking-layer-cost, 31 schedule-audit, 32 compaction-effect-check, 33 routing-outcomes.
 Восемь модулей, которые смотрят за работой, а не делают её: ленты и журналы читаются
 детерминированно, с гейтом — тихая неделя молчит; живая карта хозяйства, здоровье доставок,
 цена думающего слоя и числа, на которых держатся переносы в ночь, политика сжатия и перепины.

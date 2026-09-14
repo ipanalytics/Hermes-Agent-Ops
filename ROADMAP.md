@@ -27,7 +27,7 @@ gate, two test suites (22 + 16 checks). 16 gepa-skill-tuner: tuner.py, shell-saf
 
 ## v0.4.1 — dataset dedupe in the tuner
 16 collapses duplicate task-set inputs before the train/val split, reports label conflicts,
-ships tests. Measured on a 124-row routing set: 70 unique rows, 30 conflict groups, train-val
+ships tests. Measured on a 124-row routing set: 70 unique rows, 29 conflict groups, train-val
 input overlap 1 -> 0.
 
 ## v0.4.2 — docs and slot measurement
@@ -51,12 +51,11 @@ collects the before/after numbers in one place. Every module in this release shi
 across the seven).
 
 ## v0.6 — watching the estate
-25 ransomware-monitor, 26 querylog-domain-scout, 27 ecosystem-map, 28 research-scout,
-29 digest-delivery-health, 30 thinking-layer-cost, 31 schedule-audit,
-32 compaction-effect-check, 33 routing-outcomes. Nine modules that watch the work rather
-than do it: feeds and logs read deterministically, gated so a quiet week stays silent,
-a live estate map, delivery health, the reasoning layer's own cost, and the measurements
-behind off-peak moves, compaction policy and model pinning.
+25 querylog-domain-scout, 26 ecosystem-map, 27 research-scout, 28 digest-delivery-health,
+29 thinking-layer-cost, 30 schedule-audit, 31 compaction-effect-check, 32 routing-outcomes.
+Eight modules that watch the work rather than do it: feeds and logs read deterministically,
+gated so a quiet week stays silent, a live estate map, delivery health, the reasoning layer's
+own cost, and the measurements behind off-peak moves, compaction policy and model pinning.
 
 ## Next
 - v0.7 — test suites and CI for 01, 02, 07, 09, 10, 14 (the unfinished half of v0.4), plus a CI job

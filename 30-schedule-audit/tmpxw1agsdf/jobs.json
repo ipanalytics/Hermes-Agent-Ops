@@ -1,0 +1,1 @@
+[{"id": "job1", "name": "morning routine", "schedule": "0 6 * * *", "command": "echo 'morning'"}, {"id": "job2", "name": "research audit", "schedule": "0 12 * * *", "command": "echo 'research'"}, {"id": "job3", "name": "translation task", "schedule": "0 14 * * *", "command": "echo 'translate'"}]

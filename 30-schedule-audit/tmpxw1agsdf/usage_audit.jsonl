@@ -1,0 +1,6 @@
+{"job_id": "job1", "prompt_tokens": 50000, "completion_tokens": 10000}
+{"job_id": "job1", "prompt_tokens": 55000, "completion_tokens": 12000}
+{"job_id": "job2", "prompt_tokens": 150000, "completion_tokens": 80000}
+{"job_id": "job2", "prompt_tokens": 160000, "completion_tokens": 90000}
+{"job_id": "job3", "prompt_tokens": 250000, "completion_tokens": 100000}
+{"job_id": "job3", "prompt_tokens": 260000, "completion_tokens": 110000}

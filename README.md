@@ -37,7 +37,7 @@ Each one is handled by a component with a defined detection rule and response pa
 - every scheduled prompt is checked for self-containment before it ships,
 - the ops documentation is generated from the job list rather than maintained by hand.
 
-Thirty-three modules under numbered directories, each readable on its own, cross-referenced in `SERIES.md`.
+Thirty-two modules under numbered directories, each readable on its own, cross-referenced in `SERIES.md`.
 
 ---
 
@@ -91,15 +91,6 @@ Three properties hold at every layer:
 | `15-agent-tool-guardrails` | Judge from outside, applied to commands and worktrees: an AST-based `pre_tool_call` gate (not a regex on the string), a skill scanner for injection/exfil before an install is trusted, and git-worktree lanes whose cards close with orchestrator-produced evidence. |
 | `16-gepa-skill-tuner` | Reflective prompt evolution (GEPA) pointed at the artifacts an agent actually ships — the prompt and the SKILL.md — with a declared metric budget, a deduplicated dataset, a held-out split, and a diff as the output. |
 | `17-model-slot-bakeoff` | Picks a model for a slot by measuring the slot's real tasks: billed cost per task, latency, the upstream that actually served, hidden-test grade, and tool-call support. |
-| `25-ransomware-monitor` | Watches public ransomware-report feeds by region, dedupes incidents, and raises only new ones with the victim sector and a source link. |
-| `26-querylog-domain-scout` | Aggregates an AdGuard query log per client, so I can see which device talks to which domains and what is new. |
-| `27-ecosystem-map` | Builds a live map of the agent estate from the job list and profiles, so the documentation cannot drift from reality. |
-| `28-research-scout` | Harvests arXiv over OAI-PMH, scores papers by theme and reception, writes a brief for the model and a stable fingerprint that keeps quiet weeks silent. |
-| `29-digest-delivery-health` | Keeps a journal of digest deliveries (sent, silent, failed) and surfaces the channels that stopped working. |
-| `30-thinking-layer-cost` | Reports what the reasoning layer costs per day against a cap, so the expensive part stays visible. |
-| `31-schedule-audit` | Reviews the schedule for jobs worth moving off-peak and for the few that actually cost real money. |
-| `32-compaction-effect-check` | Measures a context-compaction policy change against its own before-and-after windows instead of assuming it helped. |
-| `33-routing-outcomes` | Counts how each model performs on real scheduled work, which is what decides a repin. |
 | `18-harness-probes` | Deterministic acceptance probes for the harness itself: JSON-declared checks over artifacts and guard scripts, a baseline that only `accept` moves, and a `check` mode that fails on regression. |
 | `19-cost-governance` | Budget cap with teeth — pauses the N most expensive jobs once a day and resumes them — cost per **successful** task per role, and a prompt-vs-toolset audit. |
 | `20-task-evals-and-autopsy` | Did the job do its work: output freshness, size and shape, failure streaks, stuck queues — plus an error classifier that reports each new failure once and a compiled operator brief. |
@@ -107,6 +98,14 @@ Three properties hold at every layer:
 | `22-difficulty-router` | Routes scheduled jobs to a model tier by measured difficulty, and refuses a repin that makes mechanical work more expensive per token. |
 | `23-research-intake` | OAI-PMH harvest of a paper corpus, local term counting in equal windows, and the journal schema — first step, metric, kill date, rejection reason — that turns reading into adopted changes. |
 | `24-llm-to-script` | The inversion that removes the largest cost line: a deterministic collector plus a small formatter prompt, the shortlist tool that finds the next candidate, and measured before/after numbers. |
+| `25-querylog-domain-scout` | Aggregates an AdGuard query log per client, so I can see which device talks to which domains and what is new. |
+| `26-ecosystem-map` | Builds a live map of the agent estate from the job list and profiles, so the documentation cannot drift from reality. |
+| `27-research-scout` | Harvests arXiv over OAI-PMH, scores papers by theme and reception, writes a brief for the model and a stable fingerprint that keeps quiet weeks silent. |
+| `28-digest-delivery-health` | Keeps a journal of digest deliveries (sent, silent, failed) and surfaces the channels that stopped working. |
+| `29-thinking-layer-cost` | Reports what the reasoning layer costs per day against a cap, so the expensive part stays visible. |
+| `30-schedule-audit` | Reviews the schedule for jobs worth moving off-peak and for the few that actually cost real money. |
+| `31-compaction-effect-check` | Measures a context-compaction policy change against its own before-and-after windows instead of assuming it helped. |
+| `32-routing-outcomes` | Counts how each model performs on real scheduled work, which is what decides a repin. |
 
 ## Quick start
 
@@ -253,15 +252,6 @@ hermes-agent-ops/
 ├── 15-agent-tool-guardrails/     hooks/, lanes.py, tests/, install.sh
 ├── 16-gepa-skill-tuner/          tuner.py, tests/, examples/
 ├── 17-model-slot-bakeoff/        bakeoff.py, tests/, examples/
-|-- 25-ransomware-monitor/
-|-- 26-querylog-domain-scout/
-|-- 27-ecosystem-map/
-|-- 28-research-scout/
-|-- 29-digest-delivery-health/
-|-- 30-thinking-layer-cost/
-|-- 31-schedule-audit/
-|-- 32-compaction-effect-check/
-|-- 33-routing-outcomes/
 ├── 18-harness-probes/            probes.py, probes_check.sh, examples/, tests/
 ├── 19-cost-governance/           budget_guard.py, cost_per_outcome.py, toolsets_audit.py, examples/, tests/
 ├── 20-task-evals-and-autopsy/    task_evals.py, postmortem.py, briefing.py, examples/, tests/
@@ -269,6 +259,14 @@ hermes-agent-ops/
 ├── 22-difficulty-router/         difficulty_router.py, examples/, tests/
 ├── 23-research-intake/           oai_harvest.py, direction_digest.py, backlog.md, examples/, tests/
 ├── 24-llm-to-script/             collector.py, token_audit.py, examples/, tests/
+├── 25-querylog-domain-scout/      ag_domain_scout.py, examples/, tests/
+├── 26-ecosystem-map/              ecosystem_map.py, examples/, tests/
+├── 27-research-scout/             research_scout.py, examples/, tests/
+├── 28-digest-delivery-health/     digest_health.py, examples/, tests/
+├── 29-thinking-layer-cost/        thinking_layer_cost.py, examples/, tests/
+├── 30-schedule-audit/             schedule_audit.py, examples/, tests/
+├── 31-compaction-effect-check/    compaction_effect_check.py, examples/, tests/
+├── 32-routing-outcomes/           routing_outcomes.py, examples/, tests/
 ├── BENCHMARKS.md                  before/after numbers from the deployment
 ├── SERIES.md                     how the modules extend each other
 ├── ROADMAP.md

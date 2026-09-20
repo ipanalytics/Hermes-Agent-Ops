@@ -1,0 +1,6 @@
+$ python3 janitor.py --skills-dir examples/sample-library/skills --home examples/sample-library/home
+skill library: 3 checked, 2 need attention (paths outside this machine, not counted as broken: 0)
+- examples/sample-library/skills/endpoint-check: missing path: ~/.config/endpoints.json; missing script: legacy_ping.sh
+- examples/sample-library/skills/weekly-report: collect.py: syntax error at line 4
+
+exit code: 0

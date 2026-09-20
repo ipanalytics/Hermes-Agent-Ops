@@ -41,6 +41,8 @@ autopsies in `03` are the reason most of the other folders exist.
 | 30 | | schedule-audit | → when the jobs from **05** fire, and what belongs in the night |
 | 31 | | compaction-effect-check | → before/after numbers for a context policy change |
 | 32 | | routing-outcomes | → closes the loop for **22** — which tier actually succeeded |
+| 33 | | multi-model-consilium | → feeds **17** and **32**: a second model's attack on a plan, and the author's answer to it, on one record |
+| 34 | | skill-library-janitor | → the library-wide counterpart of **15**'s pre-write scanner: broken paths, dead scripts, drifted frontmatter |
 
 ## Reading order
 

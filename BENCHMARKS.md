@@ -72,6 +72,15 @@ moves in one direction if each new job starts as a collector and earns its model
 | Term shares | flat except cost/tokens, 15.6% → 16.9% | share per window; shares travel with the record count |
 | Journal | 17 entries: 9 adopted, 2 in progress, 4 queued, 2 rejected | each rejection with a reason |
 
+## Decision review and library hygiene
+
+| Metric | Value | How measured |
+|---|---|---|
+| One reviewed decision | 25 089 in / 15 711 out tokens, 263 s | folder 33, one recorded three-stage run, two models from different families |
+| Cost shape of a review | three calls per decision; the reviewer can sit on the cheapest tier | per-stage usage recorded in the transcript |
+| Skill library sweep | 110 skills in under 2 s, 18 findings, no model call | folder 34, run as a monthly no-model job |
+| What the sweep found | 6 skills pointing at files that no longer exist, 4 scripts absent, 1 frontmatter name drifted from its directory | the report artifact, first run against a real library |
+
 ## Reading these numbers
 
 - Ratios, not absolutes. The deployments behind them differ in size; the transferable part is the

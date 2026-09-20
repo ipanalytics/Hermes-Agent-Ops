@@ -7,7 +7,7 @@ _English version: [README.md](README.md)_
 <p align="center">
   <a href="#"><img src="https://img.shields.io/badge/License-MIT%20%2B%20CC--BY--4.0-blue.svg" alt="License"></a>
   <a href="#"><img src="https://img.shields.io/badge/Status-active-success.svg" alt="Status"></a>
-  <a href="#"><img src="https://img.shields.io/badge/Version-0.6.0-orange.svg" alt="Version"></a>
+  <a href="#"><img src="https://img.shields.io/badge/Version-0.7.0-orange.svg" alt="Version"></a>
   <a href="#"><img src="https://img.shields.io/badge/Python-3.10%2B-3776AB.svg" alt="Python"></a>
   <a href="#"><img src="https://img.shields.io/badge/Platform-Linux-lightgrey.svg" alt="Platform"></a>
   <a href="#"><img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg" alt="PRs"></a>
@@ -37,7 +37,7 @@ _English version: [README.md](README.md)_
 - каждый запланированный промпт проверяется на самодостаточность перед отправкой,
 - эксплуатационная документация генерируется из списка заданий, а не ведётся вручную.
 
-Тридцать два модуля в пронумерованных каталогах, каждый читается самостоятельно, с перекрёстными ссылками в `SERIES.md`.
+Тридцать четыре модуля в пронумерованных каталогах, каждый читается самостоятельно, с перекрёстными ссылками в `SERIES.md`.
 
 ---
 
@@ -106,6 +106,8 @@ _English version: [README.md](README.md)_
 | `30-schedule-audit` | Разбирает расписание: что стоит увести в ночь и что реально стоит денег. |
 | `31-compaction-effect-check` | Сравнивает смену политики сжатия контекста с её же окнами до и после, вместо предположения, что стало лучше. |
 | `32-routing-outcomes` | Считает, как каждая модель справляется с настоящими заданиями расписания, — именно это решает перепин. |
+| `33-multi-model-consilium` | Проводит решение через вторую модель: одна предлагает, модель из другого семейства атакует предложение, автор отвечает на атаку и фиксирует план. Стенограмма, счёт токенов и отклонённые возражения сохраняются. |
+| `34-skill-library-janitor` | Обходит библиотеку скиллов и сообщает то, что проверяемо сломано: пропавшие пути, скрипты, переставшие компилироваться, разошедшееся поле описания. Молчит, когда чисто; дёшев для месячного крона. |
 
 ## Быстрый старт
 
@@ -267,6 +269,8 @@ hermes-agent-ops/
 ├── 30-schedule-audit/             schedule_audit.py, examples/, tests/
 ├── 31-compaction-effect-check/    compaction_effect_check.py, examples/, tests/
 ├── 32-routing-outcomes/           routing_outcomes.py, examples/, tests/
+├── 33-multi-model-consilium/       consilium.py, examples/, tests/
+├── 34-skill-library-janitor/       janitor.py, examples/, tests/
 ├── BENCHMARKS.md                  before/after numbers from the deployment
 ├── SERIES.md                     how the modules extend each other
 ├── ROADMAP.md

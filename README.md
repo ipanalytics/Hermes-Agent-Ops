@@ -5,7 +5,7 @@
 <p align="center">
   <a href="#"><img src="https://img.shields.io/badge/License-MIT%20%2B%20CC--BY--4.0-blue.svg" alt="License"></a>
   <a href="#"><img src="https://img.shields.io/badge/Status-active-success.svg" alt="Status"></a>
-  <a href="#"><img src="https://img.shields.io/badge/Version-0.6.0-orange.svg" alt="Version"></a>
+  <a href="#"><img src="https://img.shields.io/badge/Version-0.7.0-orange.svg" alt="Version"></a>
   <a href="#"><img src="https://img.shields.io/badge/Python-3.10%2B-3776AB.svg" alt="Python"></a>
   <a href="#"><img src="https://img.shields.io/badge/Platform-Linux-lightgrey.svg" alt="Platform"></a>
   <a href="#"><img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg" alt="PRs"></a>
@@ -37,7 +37,7 @@ Each one is handled by a component with a defined detection rule and response pa
 - every scheduled prompt is checked for self-containment before it ships,
 - the ops documentation is generated from the job list rather than maintained by hand.
 
-Thirty-two modules under numbered directories, each readable on its own, cross-referenced in `SERIES.md`.
+Thirty-four modules under numbered directories, each readable on its own, cross-referenced in `SERIES.md`.
 
 ---
 
@@ -106,6 +106,8 @@ Three properties hold at every layer:
 | `30-schedule-audit` | Reviews the schedule for jobs worth moving off-peak and for the few that actually cost real money. |
 | `31-compaction-effect-check` | Measures a context-compaction policy change against its own before-and-after windows instead of assuming it helped. |
 | `32-routing-outcomes` | Counts how each model performs on real scheduled work, which is what decides a repin. |
+| `33-multi-model-consilium` | Runs a decision past a second model: one proposes, a different family attacks the proposal, the author answers the attack and settles the plan. The transcript, the token bill and the rejected objections are kept. |
+| `34-skill-library-janitor` | Walks a skill library and reports what is checkably broken — missing paths, scripts that stopped compiling, drifted frontmatter. Silent when clean, cheap enough for a monthly cron. |
 
 ## Quick start
 
@@ -267,6 +269,8 @@ hermes-agent-ops/
 ├── 30-schedule-audit/             schedule_audit.py, examples/, tests/
 ├── 31-compaction-effect-check/    compaction_effect_check.py, examples/, tests/
 ├── 32-routing-outcomes/           routing_outcomes.py, examples/, tests/
+├── 33-multi-model-consilium/       consilium.py, examples/, tests/
+├── 34-skill-library-janitor/       janitor.py, examples/, tests/
 ├── BENCHMARKS.md                  before/after numbers from the deployment
 ├── SERIES.md                     how the modules extend each other
 ├── ROADMAP.md

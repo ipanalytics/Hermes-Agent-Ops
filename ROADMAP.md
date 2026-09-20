@@ -57,7 +57,14 @@ Eight modules that watch the work rather than do it: feeds and logs read determi
 gated so a quiet week stays silent, a live estate map, delivery health, the reasoning layer's
 own cost, and the measurements behind off-peak moves, compaction policy and model pinning.
 
+## v0.7 — decisions and library hygiene
+33 multi-model-consilium and 34 skill-library-janitor. One module hardens a decision before it is
+made: a second model from a different family attacks the plan and the author has to answer, with
+the transcript and the token bill kept. The other hardens what the agent already carries: a
+library-wide sweep for broken paths, code that stopped compiling and frontmatter that drifted,
+silent when clean and cheap enough to run monthly.
+
 ## Next
-- v0.7 — test suites and CI for 01, 02, 07, 09, 10, 14 (the unfinished half of v0.4), plus a CI job
+- v0.8 — test suites and CI for 01, 02, 07, 09, 10, 14 (the unfinished half of v0.4), plus a CI job
   that runs every module's tests on push.
-- v0.7 — live demo data: anonymized sample usage DB plus the dashboard rendered from it.
+- v0.8 — live demo data: anonymized sample usage DB plus the dashboard rendered from it.

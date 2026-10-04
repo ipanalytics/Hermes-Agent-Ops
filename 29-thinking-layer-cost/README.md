@@ -52,7 +52,15 @@ The script writes nine lines to standard output, in this order:
 - the live balances from OpenRouter and DeepSeek (the two providers I buy model access
   from), with the estimated runway in days at the week's average pace;
 - a status line: a green check mark when nothing is over its cap, a warning emoji with the
-  words "above threshold" when either ceiling is crossed.
+  words "above threshold" when either ceiling is crossed;
+- a cache-hit line for the last 24 hours: the share of prompt tokens served from the provider's
+  prompt cache, the split between fresh input, cached input and output tokens, the money spent
+  in that window, and the top three models by spend with their own hit rate. This is the line
+  that catches a policy that quietly stopped caching — the bill grows long before the report
+  otherwise notices;
+- one line per watched slot newcomer (optional): model name, day number out of `WATCH_DAYS`,
+  calls, spend, cache hit and the reason it is being watched. The watch list lives in
+  `~/.hermes/data/thinking_layer_watch.json`, not in the code.
 
 The cron contract is the standard one for Hermes jobs: stdout is delivered as a message in my
 chat, empty stdout is silence. There is no JSON dump, no file output, no CSV — the report is
@@ -82,6 +90,27 @@ rows it builds a per-day map for the past seven full days, takes the maximum as 
 the mean as the average, and reports both. From the balances it computes runway as
 `balance / average`, rounded down to a whole number of days, and only when the average is
 non-zero — a fresh deployment with no history simply has no runway to print.
+
+## Watching a newcomer model
+
+When I put a new model into a slot, the interesting question is not "does it answer" but
+"what does it cost at my real cache profile". A model can look cheap on the price list and
+still cost more than the one it replaced, because the cache-hit rate is what dominates a
+long-running agent: most of the prompt on every call is the same prefix, and the per-million
+cache-read rate differs between models by an order of magnitude. So for the first
+`WATCH_DAYS` days (5 by default) the report prints one extra line for that model: day number,
+call count, spend, and its cache-hit share, next to a short note on why it is being watched.
+After the window the line disappears by itself.
+
+The list is data, not code: `~/.hermes/data/thinking_layer_watch.json`, shaped as
+
+```json
+{"<model-id>": ["<YYYY-MM-DD start>", "<why this model is being watched>"]}
+```
+
+A missing or malformed file simply means nothing is watched. I keep the file out of the
+repository on purpose: the note usually names the slot the model is auditioning for and
+what it would have to beat.
 
 ## The thinking-layer definition
 
@@ -127,6 +156,8 @@ sandbox copy of the deployment.
 - The current balances on OpenRouter and DeepSeek.
 - An estimated runway in days, computed at the week's average pace.
 - A status indicator: green check, or "above threshold" when either daily cap is crossed.
+- A 24-hour cache-hit line: hit share, input/cache/output split, spend, and the top spenders.
+- Optional per-model lines for watched newcomers, for the first `WATCH_DAYS` days.
 
 ## Limitations
 
@@ -148,12 +179,13 @@ sandbox copy of the deployment.
 ```
 29-thinking-layer-cost/
 ├── thinking_layer_cost.py            # the daily-report script
-├── tests/test_thinking_layer_cost.py # tests for constants and the .env reader
+├── tests/test_thinking_layer_cost.py # tests for constants, the .env reader and the watch list
 └── examples/
-    └── config.json                   # keys the script expects to find
+    ├── config.json                   # keys the script expects to find
+    └── thinking_layer_watch.example.json  # optional watch list for a newcomer model
 ```
 
-`thinking_layer_cost.py` is a single file, around 110 lines, and depends only on the standard
+`thinking_layer_cost.py` is a single file, around 200 lines, and depends only on the standard
 library (`json`, `os`, `sqlite3`, `urllib.request`, `datetime`). The two API calls use a
 20-second timeout and swallow exceptions into `None`, so a flaky provider never aborts the
 report. The tests in `tests/test_thinking_layer_cost.py` cover the constants the script

@@ -39,5 +39,46 @@ class TestThinkingLayerCost(unittest.TestCase):
         self.assertEqual(result, 'default_value')
 
 
+class TestWatchList(unittest.TestCase):
+    """The watch list is optional data: missing or broken file means 'nothing watched'."""
+
+    def test_load_watch_returns_empty_when_file_missing(self):
+        with patch.object(thinking_layer_cost, 'WATCH_FILE', '/nonexistent/watch.json'):
+            self.assertEqual(thinking_layer_cost.load_watch(), {})
+
+    def test_load_watch_reads_json_and_normalises_pairs(self):
+        payload = '{"model/x": ["2026-09-22", "why"], "model/y": ["2026-09-23", "why too"]}'
+        with patch('builtins.open', mock_open(read_data=payload)):
+            got = thinking_layer_cost.load_watch()
+        self.assertEqual(set(got), {"model/x", "model/y"})
+        self.assertEqual(got["model/x"], ("2026-09-22", "why"))
+
+    def test_load_watch_survives_broken_payload(self):
+        with patch('builtins.open', mock_open(read_data='{not json')):
+            self.assertEqual(thinking_layer_cost.load_watch(), {})
+
+    def test_watch_report_prunes_old_and_future_entries(self):
+        today = datetime.now(timezone.utc).date().isoformat()
+        watch = {"model/old": ("2020-01-01", "stale"), "model/new": (today, "fresh")}
+        with tempfile.TemporaryDirectory() as tmp:
+            db = os.path.join(tmp, "state.db")
+            con = sqlite3.connect(db)
+            con.execute(
+                "create table session_model_usage (model text, api_call_count int, input_tokens int,"
+                " cache_read_tokens int, output_tokens int, estimated_cost_usd real)"
+            )
+            con.execute(
+                "insert into session_model_usage values ('model/new', 2, 1000, 9000, 50, 0.01)"
+            )
+            con.commit()
+            con.close()
+            with patch.object(thinking_layer_cost, 'DB', db):
+                lines = thinking_layer_cost.watch_report(today, watch=watch)
+        joined = "\n".join(lines)
+        self.assertIn("new", joined)
+        self.assertNotIn("old", joined)
+        self.assertIn("day 1/", joined)
+
+
 if __name__ == '__main__':
     unittest.main()

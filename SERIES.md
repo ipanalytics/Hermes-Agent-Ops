@@ -43,6 +43,7 @@ autopsies in `03` are the reason most of the other folders exist.
 | 32 | | routing-outcomes | → closes the loop for **22** — which tier actually succeeded |
 | 33 | | multi-model-consilium | → feeds **17** and **32**: a second model's attack on a plan, and the author's answer to it, on one record |
 | 34 | | skill-library-janitor | → the library-wide counterpart of **15**'s pre-write scanner: broken paths, dead scripts, drifted frontmatter |
+| 35 | | context-compaction-engine | → the engine **31** measures: compaction by working state, carried across cycles without asking the model to re-summarise it; the 530K-token incident in **03** is the case it was built for, and **08** owns the lifecycle it compacts inside |
 
 ## Reading order
 

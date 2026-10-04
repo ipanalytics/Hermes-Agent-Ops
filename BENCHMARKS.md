@@ -81,6 +81,26 @@ moves in one direction if each new job starts as a collector and earns its model
 | Skill library sweep | 110 skills in under 2 s, 18 findings, no model call | folder 34, run as a monthly no-model job |
 | What the sweep found | 6 skills pointing at files that no longer exist, 4 scripts absent, 1 frontmatter name drifted from its directory | the report artifact, first run against a real library |
 
+## Compaction (folder 35)
+
+One real session, the runtime's own token estimate: 901 messages / 405,318 tokens before, 59 messages /
+31,527 tokens after — 92.2% freed, a 13,090-character state block, no structural errors.
+
+On a copy of a 4,000-message session, two cycles with work continuing between them. "Fresh values" are
+the exact values (paths, ids, hashes, units, commands, quantities) the compaction kept out of the part
+it cut; "carried" is what survived from the previous block into the next one:
+
+| Cycle | Tokens before | Tokens after | Freed | Fresh exact values kept | Carried from the previous block |
+|---|---|---|---|---|---|
+| 1 | 783,419 | 40,329 | 94.9% | 95.4% of 65 | — |
+| 2 | 995,896 | 34,363 | 96.5% | 74.2% of 93 | 95.4% of 65 |
+
+Measured by `resume_eval.py` (folder 35): the values are extracted mechanically from the cut-out part
+by pattern, not by asking a model, and the live quiz — can a session that sees only the compacted
+context answer questions about what was cut — scored 8/8 after both cycles. The engine before this one
+freed 89%, 76% and 63% on its first three cycles and 55%, 20% and 8% on the second, which is the
+ratchet this module removes; the row above is the same measurement after the fix.
+
 ## Reading these numbers
 
 - Ratios, not absolutes. The deployments behind them differ in size; the transferable part is the

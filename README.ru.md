@@ -108,6 +108,7 @@ _English version: [README.md](README.md)_
 | `32-routing-outcomes` | Считает, как каждая модель справляется с настоящими заданиями расписания, — именно это решает перепин. |
 | `33-multi-model-consilium` | Проводит решение через вторую модель: одна предлагает, модель из другого семейства атакует предложение, автор отвечает на атаку и фиксирует план. Стенограмма, счёт токенов и отклонённые возражения сохраняются. |
 | `34-skill-library-janitor` | Обходит библиотеку скиллов и сообщает то, что проверяемо сломано: пропавшие пути, скрипты, переставшие компилироваться, разошедшееся поле описания. Молчит, когда чисто; дёшев для месячного крона. |
+| `35-context-compaction-engine` | Сжимает сессию в рабочее состояние — задача, решения, точные значения, следующий шаг — и переносит его через циклы вместо пересказа; приёмка по тому, можно ли продолжить задачу, а не по числу освобождённых токенов. |
 
 ## Быстрый старт
 
@@ -271,6 +272,7 @@ hermes-agent-ops/
 ├── 32-routing-outcomes/           routing_outcomes.py, examples/, tests/
 ├── 33-multi-model-consilium/       consilium.py, examples/, tests/
 ├── 34-skill-library-janitor/       janitor.py, examples/, tests/
+├── 35-context-compaction-engine/  autocompact.py, resume_eval.py, examples/, tests/
 ├── BENCHMARKS.md                  before/after numbers from the deployment
 ├── SERIES.md                     how the modules extend each other
 ├── ROADMAP.md

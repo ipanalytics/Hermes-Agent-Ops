@@ -108,6 +108,7 @@ Three properties hold at every layer:
 | `32-routing-outcomes` | Counts how each model performs on real scheduled work, which is what decides a repin. |
 | `33-multi-model-consilium` | Runs a decision past a second model: one proposes, a different family attacks the proposal, the author answers the attack and settles the plan. The transcript, the token bill and the rejected objections are kept. |
 | `34-skill-library-janitor` | Walks a skill library and reports what is checkably broken — missing paths, scripts that stopped compiling, drifted frontmatter. Silent when clean, cheap enough for a monthly cron. |
+| `35-context-compaction-engine` | Compacts a session into a working state — task, decisions, exact values, next step — and carries that state across cycles instead of re-summarising it; accepted by whether the task can still be continued, not by how many tokens were freed. |
 
 ## Quick start
 
@@ -271,6 +272,7 @@ hermes-agent-ops/
 ├── 32-routing-outcomes/           routing_outcomes.py, examples/, tests/
 ├── 33-multi-model-consilium/       consilium.py, examples/, tests/
 ├── 34-skill-library-janitor/       janitor.py, examples/, tests/
+├── 35-context-compaction-engine/  autocompact.py, resume_eval.py, examples/, tests/
 ├── BENCHMARKS.md                  before/after numbers from the deployment
 ├── SERIES.md                     how the modules extend each other
 ├── ROADMAP.md

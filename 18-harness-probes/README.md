@@ -30,6 +30,7 @@ The kinds shipped today:
 | `json_keys` | JSON parses, required nested keys present, minimum element count |
 | `script_silent` / `script` | command exits 0 with empty / non-empty / unconstrained stdout |
 | `text_match` | a file contains a regex at least N times (e.g. three cards in a digest) |
+| `cron_output` | a scheduled job's newest output file is fresh, long enough, and matches required/forbidden patterns |
 | `secrets_clean` | newest N files of a directory contain no credential-shaped strings |
 
 A probe does not look at model output and does not score answer quality. It checks artifacts: the report file was written, the spool is not full of empty files, the state JSON parses and has the right keys, the budget guard did not actually fire, the digest has at least three cards, the last 25 outputs of the cron directory do not contain a `sk-…` token. That is the surface where harness regressions actually show up.

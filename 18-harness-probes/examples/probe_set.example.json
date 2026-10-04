@@ -58,6 +58,19 @@
    "dir": "~/cron/output",
    "glob": "*.md",
    "files": 25
+  },
+  {
+   "id": "digest-has-cards",
+   "kind": "cron_output",
+   "title": "Scheduled digest actually produced cards, and is fresh",
+   "job_id": "example-job-id",
+   "max_age_h": 30,
+   "min_bytes": 800,
+   "cards_re": "^\\s*\\d+\\.\\s",
+   "min_cards": 3,
+   "must_not_match": [
+    "\\[SILENT\\]"
+   ]
   }
  ]
 }

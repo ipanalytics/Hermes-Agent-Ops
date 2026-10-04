@@ -162,6 +162,48 @@ def probe_secrets_clean(spec: dict) -> tuple[bool, str]:
     return True, f"{len(files)} файлов чисто"
 
 
+def probe_cron_output(spec: dict) -> tuple[bool, str]:
+    """Свежесть и содержание вывода крон-джоба: не «джоб отработал», а «выпуск состоялся».
+
+    Спецификация: job_id, опционально max_age_h (30), min_bytes (400), cards_re + min_cards,
+    must_match / must_not_match (регулярки, регистронезависимо).
+    """
+    job_id = spec.get("job_id")
+    output_dir = spec.get("output_dir")
+    if output_dir:
+        directory = expand(output_dir)
+    elif job_id:
+        directory = expand(f"~/.hermes/cron/output/{job_id}")
+    else:
+        return False, "нужен job_id или output_dir"
+    label = job_id or directory.name
+    if not directory.is_dir():
+        return False, f"нет каталога выводов {label}"
+    files = sorted((p for p in directory.iterdir() if p.is_file()),
+                   key=lambda p: p.stat().st_mtime, reverse=True)
+    if not files:
+        return False, f"нет выводов {label}"
+    newest = files[0]
+    age_h = (time.time() - newest.stat().st_mtime) / 3600
+    if age_h > spec.get("max_age_h", 30):
+        return False, f"вывод старше {age_h:.0f} ч"
+    text = newest.read_text(encoding="utf-8", errors="ignore")
+    if len(text) < spec.get("min_bytes", 400):
+        return False, f"вывод короткий ({len(text)} симв.)"
+    cards = None
+    if spec.get("cards_re"):
+        cards = len(re.findall(spec["cards_re"], text, re.M))
+        if cards < spec.get("min_cards", 1):
+            return False, f"карточек {cards} < {spec.get('min_cards')}"
+    for pat in spec.get("must_match", []):
+        if not re.search(pat, text, re.I):
+            return False, f"нет обязательного «{pat}»"
+    for pat in spec.get("must_not_match", []):
+        if re.search(pat, text, re.I):
+            return False, f"есть запрещённое «{pat}»"
+    return True, f"{len(text)} симв., карточек {cards if cards is not None else '—'}"
+
+
 KINDS = {
     "file_fresh": probe_file_fresh,
     "files_no_empty": probe_files_no_empty,
@@ -169,6 +211,7 @@ KINDS = {
     "script_silent": probe_script_silent,
     "script": probe_script_silent,
     "text_match": probe_text_match,
+    "cron_output": probe_cron_output,
     "secrets_clean": probe_secrets_clean,
 }
 

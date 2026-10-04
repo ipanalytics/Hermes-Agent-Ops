@@ -6,10 +6,9 @@ _Russian version: [README.ru.md](README.ru.md)_
 ![Status](https://img.shields.io/badge/status-production-green.svg)
 ![Python](https://img.shields.io/badge/python-3.10+-blue.svg)
 
-I assign cron jobs to models once, and after that the assignment is usually trusted rather than
-checked. That is how I caught myself doing it: a job that had not produced a digest in three
-days was running on a model which had started timing out every night at four in the morning, and
-the only signal I had was the missing message in my chat. The model was cheap, the cron was
+A job that had not produced a digest in three days was running on a model that had started timing
+out every night at four in the morning, and the only signal I had was the missing message in my
+chat. The model was cheap, the cron was
 silent, and the bill for the dead runs kept accumulating. This folder checks the assignment
 against the deployment's own records: which models really finish their jobs, which ones burn
 tokens, and which jobs are failing right now.

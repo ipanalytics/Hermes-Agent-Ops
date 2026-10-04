@@ -6,16 +6,16 @@ _Russian version: [README.ru.md](README.ru.md)_
 ![Status](https://img.shields.io/badge/status-active-brightgreen)
 ![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue)
 
-You changed how the agent compacts its context — a new threshold, a different compaction model, a smaller
-tail — and you want to know whether it helped. The honest answer needs two windows of real traffic, one
-before the change and one after. This folder is that measurement, so "it feels lighter since the change" is
-never the evidence.
+I changed how the agent compacts its context — a new threshold, a different compaction model, a smaller
+tail — and I wanted to know whether it had helped. The honest answer needs two windows of real traffic, one
+before the change and one after. This folder is the measurement I use, so "it feels lighter since the change" is
+never my evidence.
 
 ## Why it exists
 
 Compaction is the easiest place in an agent to make a change that looks like an improvement and costs
 money. A compaction model that is three times cheaper per token but fires twice as often is not cheaper. A
-lower threshold frees context sooner and quietly bills you on every following turn, because the cached
+lower threshold frees context sooner and quietly bills me on every following turn, because the cached
 prefix no longer matches. And a compaction triggered only at the wall leaves the biggest sessions — the
 ones with the most to gain — untouched, because they never get a clean moment to compact in.
 
@@ -27,13 +27,13 @@ afterwards.
 
 1. Before the change, the script collects a baseline over a configurable number of days: daily cost, how
    much of it is compaction, and the cache-to-input ratio.
-2. You record the exact timestamp of the change. There is no way to reconstruct it later, which is why it
+2. I record the exact timestamp of the change. There is no way to reconstruct it later, which is why it
    is a required input rather than a guess.
 3. After the observation window, the same numbers are collected again.
 4. The script compares them and prints a verdict: cheaper, more expensive, or inside the noise.
 
 Progress is kept in a small state file, so the script can be scheduled and will stay silent until the
-observation window has actually passed — a check that reports on itself every day is a check you stop
+observation window has actually passed — a check that reports on itself every day is a check I stop
 reading.
 
 ## Quick start
@@ -76,7 +76,7 @@ Run it repeatedly (a daily cron is the natural place); it prints once, when ther
 - Attribution is by model-name pattern, so two policies that use the same compaction model cannot be told
   apart — change one thing at a time.
 - The experiment assumes a single change inside the observation window. A second change during it
-  invalidates the result, and the script cannot tell you that you made one.
+  invalidates the result, and the script cannot tell me that I made one.
 
 ## Structure
 

@@ -17,7 +17,7 @@ _Русская версия: [README.ru.md](README.ru.md)_
 
 **The short version.** Everyone can show you an agent that books a flight. This repository is about the part that comes after: keeping that agent alive, honest and affordable when it runs around the clock, on its own schedule, with its own wallet.
 
-**Who it is for.** Anyone running an LLM agent on a schedule — not in a notebook, in production — and anyone who is about to. It is written against [Hermes Agent](https://hermes-agent.nousresearch.com), but most of the tooling applies to any gateway with a scheduler, a state store and provider APIs.
+**Who it is for.** Anyone running an LLM agent on a schedule — not in a notebook, in production — and anyone who is about to. It is written against Hermes Agent, but most of the tooling applies to any gateway with a scheduler, a state store and provider APIs.
 
 **What you get.** Thirty-five self-contained folders. Each one is the fix for a failure that actually happened, shipped as a runnable script or a configuration template, together with the incident that caused it — so you can take one folder without adopting the rest: read the incident, copy the script, keep the habit. The numbers behind every claim are in [BENCHMARKS.md](BENCHMARKS.md), one deployment with the measurement window next to each figure, so a claim can be re-derived rather than believed.
 

@@ -37,7 +37,7 @@ So this module is a replacement, not a patch: compact the *work*, and accept the
 
 ## What it does
 
-1. **When to compact.** Not only at the wall. Compaction also fires on a task boundary: the user speaks again and the context is already past ~60% of the threshold, which means the previous pass of work is finished and stale (`should_compress_preflight`). The hard threshold stays as a safety net (`should_compress`).
+1. **When to compact.** Not only at the wall. Compaction also fires on a task boundary: the user speaks again and the context is already past ~85% of the threshold, which means the previous pass of work is finished and stale (`should_compress_preflight`). The hard threshold stays as a safety net (`should_compress`).
 2. **What to keep.** Instead of a narrative of the process, the working state: the task, decisions and why, constraints, **exact values verbatim** (paths, ids, keys, commands, error texts, numbers), what is done, what is open, the next step, and what to re-read after the compaction. A cheap auxiliary model writes it; the compaction never asks a decision model to write prose.
 3. **How to continue.** The state block sits immediately after the protected head; the last `tail_tokens` of fresh work stay verbatim. The block is marked, so on the next cycle it is not cut again — it is **carried**: the previous block's sections are parsed and merged into the new one *without asking the model to re-summarise them*, which is where exact values used to die.
 4. **How to verify.** Every compaction is journalled (`data/autocompact_decisions.jsonl`) and accepted by `resume_eval.py`: does a session that sees only the compacted context still know what it was doing.
@@ -67,8 +67,8 @@ When two state blocks already exist (very rare, but possible if a manual edit we
 
 Two triggers, both exposed on the engine:
 
-- **`should_compress(messages, current_tokens)`.** The wall. If the rough token estimate is past `threshold_tokens` (default `250_000`), compaction is forced. This is the safety net — it is allowed to be crude because by the time it fires the model is already close to failing its next turn.
-- **`should_compress_preflight(messages, current_tokens)`.** The boundary. If the user just spoke (a fresh `user` message arrived at the tail) and the token count is past `threshold_tokens * autocompact_preflight_ratio` (default `0.6`), compaction fires *before* the next turn starts. The intuition: a user turn that follows a long passage of work means the previous pass is over. There is no point carrying the whole conversation into the next task.
+- **`should_compress(messages, current_tokens)`.** The wall. If the rough token estimate is past `threshold_tokens` (engine default `250_000`; I run `700_000`), compaction is forced. This is the safety net — it is allowed to be crude because by the time it fires the model is already close to failing its next turn.
+- **`should_compress_preflight(messages, current_tokens)`.** The boundary. If the user just spoke (a fresh `user` message arrived at the tail) and the token count is past `threshold_tokens * autocompact_preflight_ratio` (engine default `0.6`; I run `0.85`), compaction fires *before* the next turn starts. The intuition: a user turn that follows a long passage of work means the previous pass is over. There is no point carrying the whole conversation into the next task.
 
 The preflight trigger is the one that actually keeps a session healthy. The wall trigger is the one that keeps a session alive.
 
@@ -136,23 +136,24 @@ cp autocompact.py ~/.hermes/plugins/autocompact/__init__.py
 hermes config set context.engine autocompact
 
 # 2. Set the knobs (see examples/engine_config.yaml)
-hermes config set compression.threshold_tokens 250000
-hermes config set compression.autocompact_preflight_ratio 0.6
-hermes config set compression.autocompact_tail_tokens 25000
+hermes config set compression.threshold_tokens 700000
+hermes config set compression.autocompact_preflight_ratio 0.85
+hermes config set compression.autocompact_target_ratio 0.6
+hermes config set compression.autocompact_tail_tokens 120000
 ```
 
-The defaults in `examples/engine_config.yaml` are the ones I run with. Lower `autocompact_preflight_ratio` (e.g. `0.5`) compresses earlier and saves more tokens per cycle at the cost of more frequent compactions; higher (e.g. `0.7`) lets sessions ride longer and compresses harder when they finally do. `autocompact_tail_tokens` is the freshness knob — I keep it at `25000` so the last turn of the user is always inside the tail and survives verbatim.
+The values in `examples/engine_config.yaml` are the ones I run with, and they are tied to the model in the slot: it reads **1 048 576 tokens**. The engine defaults (`250_000` / `0.6`) would compact at a sixth of that window and drop working memory while there was room for four times more — on a real task that produced three compactions in 45 minutes. Lower `autocompact_preflight_ratio` compresses earlier and saves more tokens per cycle at the cost of more frequent compactions; higher lets sessions ride longer and compresses harder when they finally do. `autocompact_tail_tokens` is the freshness knob — at `120000` the last stretch of work, not just the last user turn, stays inside the tail verbatim.
 
 ## Configuration
 
-| Key (under `compression:`) | Default | Meaning |
-|---|---|---|
-| `threshold_tokens` | `250000` | Hard trigger: at the wall, compact regardless |
-| `autocompact_preflight_ratio` | `0.6` | Share of the threshold at which a task boundary may trigger compaction |
-| `autocompact_target_ratio` | `0.45` | What a compaction aims for |
-| `autocompact_tail_tokens` | `25000` | Fresh work kept verbatim, measured in tokens |
+| Key (under `compression:`) | Engine default | What I run with | Meaning |
+|---|---|---|---|
+| `threshold_tokens` | `250000` | `700000` | Hard trigger: at the wall, compact regardless |
+| `autocompact_preflight_ratio` | `0.6` | `0.85` | Share of the threshold at which a task boundary may trigger compaction |
+| `autocompact_target_ratio` | `0.45` | `0.6` | What a compaction aims for |
+| `autocompact_tail_tokens` | `25000` | `120000` | Fresh work kept verbatim, measured in tokens |
 
-All four are read at engine construction (`_cfg_num` falls back to the defaults shown above when the key is missing), and they can be set independently. The thresholds are deliberately round numbers; what matters is the *ratio* between them, not the absolute values. A 200K threshold and a 90K tail behaves the same as a 250K threshold and a 113K tail — both keep roughly 45% of the ceiling as fresh tail.
+All four are read at engine construction (`_cfg_num` falls back to the engine defaults when the key is missing), and they can be set independently. The numbers are deliberately round; what matters first is the ratio to the model's **real ceiling**, and only then the ratio between the knobs. The engine defaults were written for a 200–256K window: on the 1 048 576-token window I run, they compact at 15 % full — where nothing has to be thrown away at all. A `700000` threshold with a `0.85` preflight fires at `595000`, which is a task boundary rather than a wall.
 
 ## Acceptance: judging by continuation
 

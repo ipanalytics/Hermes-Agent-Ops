@@ -5,7 +5,7 @@ context:
   engine: autocompact        # хост берёт движок по имени; без строки — встроенное сжатие
 
 compression:
-  threshold_tokens: 250000            # предохранитель: у стенки сжимаем обязательно
-  autocompact_preflight_ratio: 0.6    # упреждающий хук: сжатие на границе задачи
-  autocompact_target_ratio: 0.45      # во что целимся после сжатия
-  autocompact_tail_tokens: 25000      # хвост свежей работы, остаётся дословно
+  threshold_tokens: 700000            # предохранитель: у стенки сжимаем обязательно
+  autocompact_preflight_ratio: 0.85   # упреждающий хук: сжатие на границе задачи
+  autocompact_target_ratio: 0.6       # во что целимся после сжатия
+  autocompact_tail_tokens: 120000     # хвост свежей работы, остаётся дословно

@@ -15,7 +15,7 @@
 
 _Русская версия: [README.ru.md](README.ru.md)_
 
-**The short version.** Everyone can show you an agent that books a flight. This repository is about the part that comes after: keeping that agent alive, honest and affordable when it runs around the clock, on its own schedule, with its own wallet.
+**The short version.** 35 modules for running a self-hosted LLM agent in production — written for **Hermes Agent**: cron reliability, cost guards, context compaction, harness probes and skill scanners. Everyone can show you an agent that books a flight. This repository is about the part that comes after: keeping that agent alive, honest and affordable when it runs around the clock, on its own schedule, with its own wallet.
 
 **Who it is for.** Anyone running an LLM agent on a schedule — not in a notebook, in production — and anyone who is about to. It is written against Hermes Agent, but most of the tooling applies to any gateway with a scheduler, a state store and provider APIs.
 

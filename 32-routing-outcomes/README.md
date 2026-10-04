@@ -1,4 +1,4 @@
-# 32 — routing-outcomes
+# 32 — Routing Outcomes
 
 _Russian version: [README.ru.md](README.ru.md)_
 
@@ -6,15 +6,26 @@ _Russian version: [README.ru.md](README.ru.md)_
 ![Status](https://img.shields.io/badge/status-production-green.svg)
 ![Python](https://img.shields.io/badge/python-3.10+-blue.svg)
 
-Routing outcomes analyzes which models actually handle the jobs based on usage audit logs and job status data.
+I assign cron jobs to models once, and after that the assignment is usually trusted rather than
+checked. This folder checks it against the deployment's own records: which models really finish their
+jobs, which ones burn tokens, and which jobs are failing right now.
 
-## Overview
+## Why it exists
 
-I analyze routing effectiveness by connecting usage audit logs (model, tokens, errors, silence) with current job statuses. My report shows per-model performance metrics and identifies where models are most expensive or failing.
+"Put a cheaper model on this job" is a decision about money, not taste: if the model does not finish
+the job, a failure at four in the morning goes unnoticed and the tokens are already spent. There is
+nothing to argue with until the numbers exist — "model X seems fine" is an opinion. The audit log and
+the job statuses are already on disk, and they are enough to produce error rates and token spend per
+job.
 
 ## How it works
 
-I load audit logs from the last 14 days and current job configurations. I aggregate runs, tokens, and errors by model. I track token costs by job and model combination. I identify jobs with non-ok status for failure analysis.
+1. The script reads `~/.hermes/cron/usage_audit.jsonl` — the audit log for the last 14 days — and
+   `~/.hermes/cron/jobs.json` with the current job configurations.
+2. Runs, tokens and errors are aggregated per model, so each model gets its own error rate and token
+   volume.
+3. Token spend is tracked per job-and-model pair, so the costliest assignments stand out immediately.
+4. Enabled jobs whose `last_status` is not `ok` are listed — those are the ones I start with.
 
 ## Quick start
 
@@ -22,27 +33,26 @@ I load audit logs from the last 14 days and current job configurations. I aggreg
 python3 routing_outcomes.py
 ```
 
-Set `ROUTING_WINDOW_DAYS` to change the analysis window. Set `AGENT_HOME` to specify the Hermes configuration directory.
-
-## Usage
-
-The script reads from `~/.hermes/cron/usage_audit.jsonl` and `~/.hermes/cron/jobs.json`. It prints a compact report showing model performance and expensive job assignments.
+The analysis window is 14 days; I change it with `ROUTING_WINDOW_DAYS`, and I point `AGENT_HOME` at the
+Hermes configuration directory.
 
 ## Outputs
 
-- Per-model summary: runs, token volume, error rates
-- Most expensive job-model combinations 
-- Jobs not in OK status
+- per-model summary: runs, token volume, error rate;
+- the most expensive job-and-model pairs;
+- jobs that are not in OK status.
 
 ## Limitations
 
-Requires audit logs and job configuration files to be accessible. Analysis window is limited to recent data.
+The module reads rather than guesses: without the audit log and the job configuration files it has
+nothing to count. The window is short — recent data only: it shows the current picture, not what the
+assignment looked like six months ago.
 
 ## Structure
 
-- `routing_outcomes.py` - Main analysis script
-- `tests/test_routing_outcomes.py` - Unit tests
-- `examples/` - Sample input data
+- `routing_outcomes.py` — the main analysis script;
+- `tests/test_routing_outcomes.py` — unit tests;
+- `examples/` — sample input data.
 
 ## License
 

@@ -663,7 +663,16 @@ class AutoCompactEngine(ContextEngine):
     # ---- публичный интерфейс -------------------------------------------------------------
 
     def prune_tool_results_only(self, messages: List[Dict[str, Any]], current_tokens: int | None = None):
-        """Лёгкий проход без модели: старые длинные результаты инструментов урезаются на месте."""
+        """Лёгкий проход без модели: старые длинные результаты инструментов урезаются на месте.
+
+        Гейт по ``compression.proactive_prune_tokens`` обязателен: хост зовёт метод на каждом
+        пост-тул ходу (ветка «over threshold but blocked» попадает и при малом контексте), а
+        встроенный движок порог проверяет у себя. Без гейта результаты режутся до 400 знаков
+        при любом размере сессии. Порог <= 0 → проход выключен целиком.
+        """
+        limit = _cfg_num("proactive_prune_tokens", 0)
+        if limit <= 0 or (current_tokens is not None and current_tokens < limit):
+            return messages, 0
         out = copy.deepcopy(messages)
         head_end, tail_start = self._bounds(out)
         n = 0

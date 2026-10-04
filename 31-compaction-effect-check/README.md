@@ -6,76 +6,97 @@ _Russian version: [README.ru.md](README.ru.md)_
 ![Status](https://img.shields.io/badge/status-active-brightgreen)
 ![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue)
 
-This module checks the effect of changing context compaction policies in Hermes Agent. It collects baseline metrics before a policy change, then compares usage patterns after the change period to determine if the new policy improves or worsens resource consumption.
+You changed how the agent compacts its context — a new threshold, a different compaction model, a smaller
+tail — and you want to know whether it helped. The honest answer needs two windows of real traffic, one
+before the change and one after. This folder is that measurement, so "it feels lighter since the change" is
+never the evidence.
 
-## Overview
+## Why it exists
 
-I run this module to evaluate context compaction policy changes in Hermes Agent. The module establishes a baseline during a pre-change period, then measures changes in daily costs, compression ratios, and cache efficiency after implementing a new compaction policy. I analyze metrics like daily cost, compaction model usage, and cache-to-input token ratios to provide a clear verdict on policy effectiveness.
+Compaction is the easiest place in an agent to make a change that looks like an improvement and costs
+money. A compaction model that is three times cheaper per token but fires twice as often is not cheaper. A
+lower threshold frees context sooner and quietly bills you on every following turn, because the cached
+prefix no longer matches. And a compaction triggered only at the wall leaves the biggest sessions — the
+ones with the most to gain — untouched, because they never get a clean moment to compact in.
+
+None of that is visible in the moment. It shows up in the cost curve a week later, which is why the change
+has to be measured against its own before-and-after windows instead of judged by how the session felt
+afterwards.
 
 ## How it works
 
-I collect usage data from the Hermes database before and after a compaction policy change. My process involves:
+1. Before the change, the script collects a baseline over a configurable number of days: daily cost, how
+   much of it is compaction, and the cache-to-input ratio.
+2. You record the exact timestamp of the change. There is no way to reconstruct it later, which is why it
+   is a required input rather than a guess.
+3. After the observation window, the same numbers are collected again.
+4. The script compares them and prints a verdict: cheaper, more expensive, or inside the noise.
 
-1. Establishing baseline metrics over a configurable period before the change
-2. Recording the exact timestamp of the policy change
-3. Measuring the same metrics after the change over an observation period
-4. Comparing daily costs, compaction usage, and cache efficiency
-5. Providing a clear verdict on whether the change improved or worsened performance
-
-I store my intermediate state in a JSON file to track the experiment progress and avoid duplicate reporting.
+Progress is kept in a small state file, so the script can be scheduled and will stay silent until the
+observation window has actually passed — a check that reports on itself every day is a check you stop
+reading.
 
 ## Quick start
 
 ```bash
-# Set environment variables for your experiment
-export CHANGE_TIMESTAMP=$(date +%s)  # Timestamp of policy change
+export CHANGE_TIMESTAMP=$(date +%s)   # when the new policy went live
 export COMPACT_MODEL_NAME="glm-5.3-flash"
 export BASELINE_DAYS=3
 export OBSERVE_DAYS=3
 
-# Run the check
 python3 compaction_effect_check.py
 ```
 
 ## Usage
 
-The module accepts configuration through environment variables:
+Everything is configured through the environment:
 
-- `HERMES_DB_PATH`: Path to the Hermes database (default: `~/.hermes/state.db`)
-- `COMPACT_STATE_FILE`: State file path (default: `~/.hermes/data/compaction_experiment.json`)
-- `BASELINE_DAYS`: Days to collect baseline data (default: 3)
-- `OBSERVE_DAYS`: Days to observe after change (default: 3)
-- `COMPACT_MODEL_NAME`: Model name for compaction tracking (default: `glm-5.3-flash`)
-- `CHANGE_TIMESTAMP`: Unix timestamp of the policy change
+- `HERMES_DB_PATH` — the usage database (default `~/.hermes/state.db`)
+- `COMPACT_STATE_FILE` — the experiment state file (default `~/.hermes/data/compaction_experiment.json`)
+- `BASELINE_DAYS` / `OBSERVE_DAYS` — window lengths in days (default 3 / 3)
+- `COMPACT_MODEL_NAME` — the model that does the compacting, used to attribute its share of the spend
+  (default `glm-5.3-flash`)
+- `CHANGE_TIMESTAMP` — Unix timestamp of the policy change
 
-Run the script repeatedly during the experiment. It will remain silent until the observation period completes, then print results once.
+Run it repeatedly (a daily cron is the natural place); it prints once, when there is something to say.
 
 ## Outputs
 
-My output includes:
-
-- Daily cost comparison (before vs after)
-- Compaction model cost comparison
-- Number of compaction calls
-- Cache-to-input token ratio
-- Clear verdict on whether the change was beneficial
+- daily cost, before against after;
+- the compaction model's own cost and call count;
+- the cache-to-input token ratio — the column where a "cheaper" policy usually turns out not to be;
+- a verdict, in plain words, on whether the change is worth keeping.
 
 ## Limitations
 
-I require access to the Hermes database with usage statistics. My effectiveness depends on having sufficient baseline and observation periods to establish reliable metrics. I only track models identified by the compaction model name pattern. The experiment assumes a single policy change during the observation window.
+- It reads a usage database. If the deployment does not record per-model usage, there is nothing to
+  compare.
+- Both windows have to contain a normal mix of traffic. A baseline that covers a weekend is not a
+  baseline.
+- Attribution is by model-name pattern, so two policies that use the same compaction model cannot be told
+  apart — change one thing at a time.
+- The experiment assumes a single change inside the observation window. A second change during it
+  invalidates the result, and the script cannot tell you that you made one.
 
 ## Structure
 
 ```
-├── compaction_effect_check.py  # Main script
+├── compaction_effect_check.py  # main script
 ├── README.md                   # English documentation
 ├── README.ru.md                # Russian documentation
 ├── tests/
 │   └── test_compaction_effect_check.py
 └── examples/
-    ├── sample_config.env       # Example environment variables
-    └── experiment_state.json   # Example state file
+    ├── sample_config.env       # example environment variables
+    └── experiment_state.json   # example state file
 ```
+
+## Related
+
+- **35-context-compaction-engine** — the engine this check exists to accept: compaction by working state,
+  judged by whether the task can still be continued.
+- **03-agent-ops-playbook** — the incident that turned context size from an annoyance into an operational
+  topic.
 
 ## License
 

@@ -15,9 +15,11 @@
 
 _Русская версия: [README.ru.md](README.ru.md)_
 
-Operational patterns, tooling, and incident records for running LLM agents as a 24/7 service. The repository covers spend guards, external process supervision, multi-role profile architecture, self-observing scheduled jobs, and the post-mortems behind each component. Everything here is generalized from a production deployment that has been operating around the clock — every artifact is either runnable code or a configuration template that was exercised in that environment.
+**The short version.** Everyone can show you an agent that books a flight. This repository is about the part that comes after: keeping that agent alive, honest and affordable when it runs around the clock, on its own schedule, with its own wallet.
 
-The primary target is [Hermes Agent](https://hermes-agent.nousresearch.com); the patterns and most of the tooling apply to any agent gateway with a scheduler, a state store, and provider APIs.
+**Who it is for.** Anyone running an LLM agent on a schedule — not in a notebook, in production — and anyone who is about to. It is written against [Hermes Agent](https://hermes-agent.nousresearch.com), but most of the tooling applies to any gateway with a scheduler, a state store and provider APIs.
+
+**What you get.** Thirty-five self-contained folders. Each one is the fix for a failure that actually happened, shipped as a runnable script or a configuration template, together with the incident that caused it — so you can take one folder without adopting the rest: read the incident, copy the script, keep the habit. The numbers behind every claim are in [BENCHMARKS.md](BENCHMARKS.md), one deployment with the measurement window next to each figure, so a claim can be re-derived rather than believed.
 
 ---
 
@@ -37,7 +39,7 @@ Each one is handled by a component with a defined detection rule and response pa
 - every scheduled prompt is checked for self-containment before it ships,
 - the ops documentation is generated from the job list rather than maintained by hand.
 
-Thirty-four modules under numbered directories, each readable on its own, cross-referenced in `SERIES.md`.
+Thirty-five modules under numbered directories, each readable on its own, cross-referenced in `SERIES.md`.
 
 ---
 

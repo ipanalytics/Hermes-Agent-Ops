@@ -45,18 +45,25 @@ autopsies in `03` are the reason most of the other folders exist.
 | 34 | | skill-library-janitor | → the library-wide counterpart of **15**'s pre-write scanner: broken paths, dead scripts, drifted frontmatter |
 | 35 | | context-compaction-engine | → the engine **31** measures: compaction by working state, carried across cycles without asking the model to re-summarise it; the 530K-token incident in **03** is the case it was built for, and **08** owns the lifecycle it compacts inside |
 
-## Reading order
+## Where to start
 
-1. **Start at 03** — the incidents (10 minutes) explain why every other folder exists.
-2. **Grab 04 + 11** to stand up their own roles.
-3. **Deploy 01 + 10** before trusting any of it with real money.
-4. **Ship every cron prompt through 07** and generate docs with 09.
-5. **Watch it all** with 05, and let 02/06 keep the services alive.
-6. **Before trusting any of it with money**: 18 gates the harness, 19 caps the spend, 20 watches the
-   work, 21 measures what the gates miss, 22 routes the tiers, 24 removes the cost that does not need
-   a model at all.
+Read **03** first. Ten minutes of incident autopsies, and every other folder suddenly has a reason to
+exist — it is the least interesting reading in the repository and the reason the rest of it holds
+together.
 
-## Contribution rules
+After that, the order is set by consequence rather than convenience. Stand up your own roles (**04**, with
+a persona pack from **11**), then put the money guard in place (**01** and **10**) before any of it is
+trusted with real money. Every scheduled prompt goes through the linter (**07**) and the documentation is
+generated (**09**) so it cannot drift from what actually runs; **05** watches the schedule while **02** and
+**06** keep the services alive.
 
-Each folder owns its README and its artifacts. A PR that touches a folder updates the map
-row. New code ships with a test that exercises it, and the README lists the real files.
+The later folders are the ones that pay for themselves once it has been running for a while: **18** gates
+the harness, **19** caps the spend, **20** checks whether the work actually happened, **21** measures what
+the gates miss, **22** routes jobs to the tier they deserve, and **24** removes the cost that never needed
+a model in the first place.
+
+## Working in this repository
+
+Each folder owns its README and its artifacts, and a change inside a folder updates that folder's row in
+the map above. New code arrives with a test that exercises it, and the README lists the files that are
+really there — not the ones that were planned.
